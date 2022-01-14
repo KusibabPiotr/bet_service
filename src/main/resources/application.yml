@@ -1,0 +1,22 @@
+#database_connection
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/betservice?serverTimezone=Europe/Warsaw&useSSL=False&allowPublicKeyRetrieval=true
+    username: root
+    password: Igloopol1
+
+  jpa:
+    database: mysql
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+
+#api_football_client
+football:
+  api:
+    key: 17cf648184mshbe837229d72010cp189b3bjsn9282b3c5d01c
+    endpoint: https://api-football-v1.p.rapidapi.com/v3/
+    host: api-football-v1.p.rapidapi.com
