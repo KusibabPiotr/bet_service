@@ -1,16 +1,19 @@
-package my.betservice.domain;
+package my.betservice.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
+@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LeagueInfoPackageDto {
-    @JsonProperty("response")
-    private LeagueInfoDto[] leagueInfoDto = new LeagueInfoDto[1];
+public class LeagueDto {
+    @JsonProperty("id")
+    private int leagueId;
+    private String name;
+    private LeagueType type;
+    private String logo;
 }

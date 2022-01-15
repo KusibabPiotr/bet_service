@@ -1,4 +1,4 @@
-package my.betservice.domain;
+package my.betservice.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LeagueInfoDto {
     private Long id;
     private LeagueDto league;
