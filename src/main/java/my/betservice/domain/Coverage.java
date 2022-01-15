@@ -35,11 +35,11 @@ public class Coverage {
 
         Coverage coverage = (Coverage) o;
 
-        return id != null ? id.equals(coverage.id) : coverage.id == null;
+        return id.equals(coverage.id);
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return id.hashCode();
     }
 }

@@ -11,11 +11,12 @@ import javax.persistence.*;
 @Setter
 @Entity
 @Table(name = "LEAGUES")
+@Data
 public class League {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "ID")
+    private Long dbId;
     private int leagueId;
     private String name;
     private String type;
@@ -28,11 +29,11 @@ public class League {
 
         League league = (League) o;
 
-        return id != null ? id.equals(league.id) : league.id == null;
+        return dbId.equals(league.dbId);
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return dbId.hashCode();
     }
 }

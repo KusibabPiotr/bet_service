@@ -27,11 +27,11 @@ public class Fixture {
 
         Fixture fixture = (Fixture) o;
 
-        return id != null ? id.equals(fixture.id) : fixture.id == null;
+        return id.equals(fixture.id);
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return id.hashCode();
     }
 }

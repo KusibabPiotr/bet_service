@@ -26,11 +26,11 @@ public class Country {
 
         Country country = (Country) o;
 
-        return id != null ? id.equals(country.id) : country.id == null;
+        return id.equals(country.id);
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return id.hashCode();
     }
 }

@@ -33,4 +33,19 @@ public class LeagueInfo {
             fetch = FetchType.LAZY
     )
     private List<Season> seasons = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        LeagueInfo that = (LeagueInfo) o;
+
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }
