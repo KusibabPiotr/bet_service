@@ -1,8 +1,9 @@
-package my.betservice.dto;
+package my.betservice.dto.league;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import my.betservice.dto.league.FixtureCoverageDto;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,7 +13,7 @@ import lombok.*;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CoverageDto {
     private Long id;
-    private FixtureDto fixtures;
+    private FixtureCoverageDto fixtures;
     private boolean standings;
     private boolean players;
     @JsonProperty("top_scorers")

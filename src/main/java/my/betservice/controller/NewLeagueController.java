@@ -1,7 +1,7 @@
 package my.betservice.controller;
 
 import lombok.RequiredArgsConstructor;
-import my.betservice.dto.LeagueInfoDto;
+import my.betservice.dto.league.LeagueInfoDto;
 import my.betservice.facade.LeagueFacade;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,4 +1,4 @@
-package my.betservice.domain;
+package my.betservice.domain.league;
 
 import lombok.*;
 
@@ -18,7 +18,7 @@ public class Coverage {
     @OneToOne(cascade = CascadeType.ALL,
                 fetch = FetchType.EAGER)
     @JoinColumn(name = "COVERAGE_ID")
-    private Fixture fixtures;
+    private FixtureCoverage fixtures;
     private boolean standings;
     private boolean players;
     private boolean topScores;

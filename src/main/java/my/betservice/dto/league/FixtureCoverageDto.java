@@ -1,4 +1,4 @@
-package my.betservice.dto;
+package my.betservice.dto.league;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,7 +10,7 @@ import lombok.*;
 @Data
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class FixtureDto {
+public class FixtureCoverageDto {
     private Long id;
     private boolean events;
     @JsonProperty("lineups")

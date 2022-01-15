@@ -1,7 +1,7 @@
-package my.betservice.mapper;
+package my.betservice.mapper.league;
 
-import my.betservice.domain.Season;
-import my.betservice.dto.SeasonDto;
+import my.betservice.domain.league.Season;
+import my.betservice.dto.league.SeasonDto;
 
 import java.util.List;
 

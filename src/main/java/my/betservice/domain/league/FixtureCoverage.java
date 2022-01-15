@@ -1,4 +1,4 @@
-package my.betservice.domain;
+package my.betservice.domain.league;
 
 import lombok.*;
 
@@ -10,8 +10,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "FIXTURES")
-public class Fixture {
+@Table(name = "FIXTURES_COVERAGE")
+public class FixtureCoverage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -25,9 +25,9 @@ public class Fixture {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Fixture fixture = (Fixture) o;
+        FixtureCoverage fixtureCoverage = (FixtureCoverage) o;
 
-        return id.equals(fixture.id);
+        return id.equals(fixtureCoverage.id);
     }
 
     @Override

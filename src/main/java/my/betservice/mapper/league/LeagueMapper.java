@@ -1,7 +1,7 @@
-package my.betservice.mapper;
+package my.betservice.mapper.league;
 
-import my.betservice.domain.League;
-import my.betservice.dto.LeagueDto;
+import my.betservice.domain.league.League;
+import my.betservice.dto.league.LeagueDto;
 
 public class LeagueMapper {
 

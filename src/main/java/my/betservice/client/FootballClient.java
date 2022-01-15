@@ -1,8 +1,8 @@
 package my.betservice.client;
 
 import lombok.extern.slf4j.Slf4j;
-import my.betservice.dto.LeagueInfoDto;
-import my.betservice.dto.LeagueInfoPackageDto;
+import my.betservice.dto.league.LeagueInfoDto;
+import my.betservice.dto.league.LeagueInfoPackageDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
@@ -29,7 +29,6 @@ public class FootballClient {
     private String apiHostValue;
 
     public LeagueInfoDto getLeagueInfo(final Long id) {
-
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
@@ -49,4 +48,6 @@ public class FootballClient {
         return Optional.ofNullable(Objects.requireNonNull(response.getBody())
                 .getLeagueInfoDto()[0]).orElseGet(LeagueInfoDto::new);
     }
+
+
 }

@@ -1,12 +1,11 @@
 package my.betservice.facade;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import my.betservice.client.FootballClient;
-import my.betservice.domain.LeagueInfo;
-import my.betservice.dto.LeagueInfoDto;
+import my.betservice.domain.league.LeagueInfo;
+import my.betservice.dto.league.LeagueInfoDto;
 import my.betservice.exception.LeagueNotFoundException;
-import my.betservice.mapper.LeagueInfoMapper;
+import my.betservice.mapper.league.LeagueInfoMapper;
 import my.betservice.service.LeagueService;
 import org.springframework.stereotype.Service;
 

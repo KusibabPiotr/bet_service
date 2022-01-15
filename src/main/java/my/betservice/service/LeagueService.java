@@ -2,8 +2,7 @@ package my.betservice.service;
 
 import lombok.RequiredArgsConstructor;
 import my.betservice.LeagueInfoRepository;
-import my.betservice.domain.LeagueInfo;
-import my.betservice.dto.LeagueInfoDto;
+import my.betservice.domain.league.LeagueInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

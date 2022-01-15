@@ -1,4 +1,4 @@
-package my.betservice.dto;
+package my.betservice.dto.league;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

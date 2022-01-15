@@ -1,7 +1,7 @@
 package my.betservice.controller;
 
 import lombok.RequiredArgsConstructor;
-import my.betservice.dto.LeagueInfoDto;
+import my.betservice.dto.league.LeagueInfoDto;
 import my.betservice.exception.LeagueNotFoundException;
 import my.betservice.facade.LeagueFacade;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +27,5 @@ public class LeagueController {
     throws LeagueNotFoundException {
         return leagueFacade.getLeagueInfo(id);
     }
-
 
 }

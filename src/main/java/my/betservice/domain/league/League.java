@@ -1,4 +1,4 @@
-package my.betservice.domain;
+package my.betservice.domain.league;
 
 import lombok.*;
 

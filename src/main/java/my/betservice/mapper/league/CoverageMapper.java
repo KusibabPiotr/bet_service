@@ -1,7 +1,7 @@
-package my.betservice.mapper;
+package my.betservice.mapper.league;
 
-import my.betservice.domain.Coverage;
-import my.betservice.dto.CoverageDto;
+import my.betservice.domain.league.Coverage;
+import my.betservice.dto.league.CoverageDto;
 
 public class CoverageMapper {
 

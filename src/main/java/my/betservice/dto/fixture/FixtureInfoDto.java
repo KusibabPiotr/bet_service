@@ -1,4 +1,4 @@
-package my.betservice.dto;
+package my.betservice.dto.fixture;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -9,9 +9,7 @@ import lombok.*;
 @Data
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CountryDto {
+public class FixtureInfoDto {
     private Long id;
-    private String name;
-    private String code;
-    private String flag;
+    private FixtureDto fixture;
 }
