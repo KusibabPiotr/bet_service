@@ -1,7 +1,6 @@
 package my.betservice.domain;
 
 import lombok.*;
-import my.betservice.dto.LeagueType;
 
 import javax.persistence.*;
 
@@ -19,6 +18,21 @@ public class League {
     private Long id;
     private int leagueId;
     private String name;
-    private LeagueType type;
+    private String type;
     private String logo;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        League league = (League) o;
+
+        return id != null ? id.equals(league.id) : league.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }

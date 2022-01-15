@@ -44,6 +44,8 @@ public class FootballClient {
                 request,
                 LeagueInfoPackageDto.class
         );
+        log.info(response.getBody().getLeagueInfoDto()[0].toString());
+        log.info(response.getBody().getLeagueInfoDto()[0].getSeasons().get(0).toString());
         return Optional.ofNullable(Objects.requireNonNull(response.getBody())
                 .getLeagueInfoDto()[0]).orElseGet(LeagueInfoDto::new);
     }

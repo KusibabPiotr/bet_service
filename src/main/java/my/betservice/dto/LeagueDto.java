@@ -11,9 +11,10 @@ import lombok.NoArgsConstructor;
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LeagueDto {
+    private Long id;
     @JsonProperty("id")
     private int leagueId;
     private String name;
-    private LeagueType type;
+    private String type;
     private String logo;
 }

@@ -4,6 +4,9 @@ spring:
     url: jdbc:mysql://localhost:3306/betservice?serverTimezone=Europe/Warsaw&useSSL=False&allowPublicKeyRetrieval=true
     username: root
     password: Igloopol1
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 
   jpa:
     database: mysql

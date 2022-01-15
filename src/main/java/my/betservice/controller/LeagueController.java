@@ -24,7 +24,7 @@ public class LeagueController {
 
     @GetMapping(value = "/{id}")
     public LeagueInfoDto getLeague(@PathVariable Long id) {
-        return new LeagueInfoDto();
+        return footballClient.getLeagueInfo(id);
     }
 
 }
