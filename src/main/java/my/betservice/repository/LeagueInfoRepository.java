@@ -1,4 +1,4 @@
-package my.betservice;
+package my.betservice.repository;
 
 import my.betservice.domain.league.LeagueInfo;
 import org.springframework.data.jpa.repository.JpaRepository;

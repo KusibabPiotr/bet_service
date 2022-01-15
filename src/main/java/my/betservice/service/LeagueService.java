@@ -1,7 +1,7 @@
 package my.betservice.service;
 
 import lombok.RequiredArgsConstructor;
-import my.betservice.LeagueInfoRepository;
+import my.betservice.repository.LeagueInfoRepository;
 import my.betservice.domain.league.LeagueInfo;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.Optional;
 public class LeagueService {
     private final LeagueInfoRepository leagueInfoRepository;
 
-    public Optional<LeagueInfo> getLeagueInfo(final Long id) {
+    public Optional<LeagueInfo> getLeagueInfoById(final Long id) {
         return leagueInfoRepository.findById(id);
     }
 

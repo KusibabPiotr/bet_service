@@ -17,10 +17,10 @@ public class LeagueFacade {
     private final LeagueService leagueService;
     private final FootballClient footballClient;
 
-    public LeagueInfoDto getLeagueInfo(final Long id)
+    public LeagueInfoDto getLeagueInfoById(final Long id)
             throws LeagueNotFoundException {
         return LeagueInfoMapper.mapToLeagueInfoDto(
-                leagueService.getLeagueInfo(id)
+                leagueService.getLeagueInfoById(id)
                         .orElseThrow(LeagueNotFoundException::new));
     }
 
@@ -29,7 +29,9 @@ public class LeagueFacade {
     }
 
     public LeagueInfoDto fetchNewLeagueToApp(final Long id) {
-        LeagueInfo leagueInfo = LeagueInfoMapper.mapToLeagueInfo(footballClient.getLeagueInfo(id));
-        return LeagueInfoMapper.mapToLeagueInfoDto(leagueService.saveNewLeagueInfo(leagueInfo));
+        LeagueInfo leagueInfo =
+                LeagueInfoMapper.mapToLeagueInfo(footballClient.getLeagueInfo(id));
+        return LeagueInfoMapper.mapToLeagueInfoDto(
+                leagueService.saveNewLeagueInfo(leagueInfo));
     }
 }

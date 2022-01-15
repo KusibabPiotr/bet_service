@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "TEAMS")
+@Table(name = "HOME_AWAY")
 public class Teams {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
