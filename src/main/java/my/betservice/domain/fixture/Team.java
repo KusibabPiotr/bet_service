@@ -3,6 +3,7 @@ package my.betservice.domain.fixture;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,11 +28,14 @@ public class Team {
 
         Team team = (Team) o;
 
-        return dbId.equals(team.dbId);
+        if (!Objects.equals(dbId, team.dbId)) return false;
+        return teamId.equals(team.teamId);
     }
 
     @Override
     public int hashCode() {
-        return dbId.hashCode();
+        int result = dbId != null ? dbId.hashCode() : 0;
+        result = 31 * result + teamId.hashCode();
+        return result;
     }
 }

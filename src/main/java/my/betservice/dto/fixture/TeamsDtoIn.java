@@ -6,9 +6,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Data
-@Getter
-public class TeamsDto {
-    private Long id;
-    private TeamDto home;
-    private TeamDto away;
+public class TeamsDtoIn {
+    private TeamDtoInOut home;
+    private TeamDtoInOut away;
 }

@@ -1,7 +1,7 @@
 package my.betservice.controller.user;
 
 import lombok.RequiredArgsConstructor;
-import my.betservice.dto.fixture.FixtureInfoDto;
+import my.betservice.dto.fixture.FixtureInfoDtoOut;
 import my.betservice.exception.FixtureNotFoundException;
 import my.betservice.facade.FixtureFacade;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,12 +18,12 @@ public class FixtureController {
     private final FixtureFacade fixtureFacade;
 
     @GetMapping
-    public List<FixtureInfoDto> getAvailableFixturesInfo() {
+    public List<FixtureInfoDtoOut> getAvailableFixturesInfo() {
         return fixtureFacade.getAvailableFixturesInfo();
     }
 
     @GetMapping(value = "/{id}")
-    public FixtureInfoDto getFixtureInfoById(@PathVariable Long id)
+    public FixtureInfoDtoOut getFixtureInfoById(@PathVariable Long id)
     throws FixtureNotFoundException {
         return fixtureFacade.getFixtureInfoById(id);
     }

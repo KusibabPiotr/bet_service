@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LeagueInfoPackageDto {
+public class LeagueInfoPackageDtoIn {
     @JsonProperty("response")
-    private LeagueInfoDto[] leagueInfoDto = new LeagueInfoDto[1];
+    private LeagueInfoDtoIn[] leagueInfoDtoIn = new LeagueInfoDtoIn[1];
 }

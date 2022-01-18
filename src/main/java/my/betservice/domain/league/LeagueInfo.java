@@ -3,8 +3,7 @@ package my.betservice.domain.league;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,22 +16,11 @@ public class LeagueInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(cascade = CascadeType.ALL,
-                fetch = FetchType.EAGER)
-    @JoinColumn(name = "LEAGUE_ID")
-    private League league;
-    @ManyToOne(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
-    private Country country;
-    @Builder.Default
-    @OneToMany(
-            targetEntity = Season.class,
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<Season> seasons = new ArrayList<>();
+    private Integer leagueId;
+    private String leagueName;
+    private String leagueLogo;
+    private String countryName;
+    private String countryFlag;
 
     @Override
     public boolean equals(Object o) {
@@ -41,11 +29,14 @@ public class LeagueInfo {
 
         LeagueInfo that = (LeagueInfo) o;
 
-        return id.equals(that.id);
+        if (!Objects.equals(id, that.id)) return false;
+        return leagueId.equals(that.leagueId);
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + leagueId.hashCode();
+        return result;
     }
 }

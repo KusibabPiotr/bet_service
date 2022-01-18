@@ -1,13 +1,12 @@
 package my.betservice.mapper.fixture;
 
 import my.betservice.domain.fixture.Team;
-import my.betservice.dto.fixture.TeamDto;
+import my.betservice.dto.fixture.TeamDtoInOut;
 
 public class TeamMapper {
 
-    public static Team mapToTeam(final TeamDto dto) {
+    public static Team mapToTeam(final TeamDtoInOut dto) {
         return Team.builder()
-                .dbId(dto.getDbId())
                 .teamId(dto.getTeamId())
                 .name(dto.getName())
                 .logo(dto.getLogo())
@@ -15,9 +14,8 @@ public class TeamMapper {
                 .build();
     }
 
-    public static TeamDto mapToTeamDto(final Team team) {
-        return TeamDto.builder()
-                .dbId(team.getDbId())
+    public static TeamDtoInOut mapToTeamDto(final Team team) {
+        return TeamDtoInOut.builder()
                 .teamId(team.getTeamId())
                 .name(team.getName())
                 .logo(team.getLogo())

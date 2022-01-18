@@ -1,7 +1,8 @@
 package my.betservice.controller.admin;
 
 import lombok.RequiredArgsConstructor;
-import my.betservice.dto.league.LeagueInfoDto;
+import my.betservice.dto.league.LeagueInfoDtoOut;
+import my.betservice.exception.ClientFetchException;
 import my.betservice.facade.LeagueFacade;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class NewLeagueController {
     private final LeagueFacade leagueFacade;
 
-    @GetMapping(value = "/{id}")
-    public LeagueInfoDto fetchNewLeagueToApp(@PathVariable Long id) {
-        return leagueFacade.fetchNewLeagueToApp(id);
+    @GetMapping(value = "/{leagueId}")
+    public LeagueInfoDtoOut fetchNewLeagueToApp(@PathVariable Long leagueId)
+            throws ClientFetchException {
+        return leagueFacade.fetchNewLeagueToApp(leagueId);
     }
 }

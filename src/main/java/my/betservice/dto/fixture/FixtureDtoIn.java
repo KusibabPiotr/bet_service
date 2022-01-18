@@ -8,13 +8,12 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Data
-@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class GameStatusDto {
-    private Long id;
-    @JsonProperty(value = "long")
-    private String fullStatus;
-    @JsonProperty(value = "short")
-    private String shortStatus;
-    private Integer elapsed;
+public class FixtureDtoIn {
+    @JsonProperty("id")
+    private Integer fixtureId;
+    private String referee;
+    private String date;
+    private VenueDtoIn venue;
+    private GameStatusDtoIn status;
 }

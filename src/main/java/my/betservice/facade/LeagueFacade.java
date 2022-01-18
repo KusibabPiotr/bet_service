@@ -3,7 +3,9 @@ package my.betservice.facade;
 import lombok.RequiredArgsConstructor;
 import my.betservice.client.FootballClient;
 import my.betservice.domain.league.LeagueInfo;
-import my.betservice.dto.league.LeagueInfoDto;
+import my.betservice.dto.league.LeagueInfoDtoIn;
+import my.betservice.dto.league.LeagueInfoDtoOut;
+import my.betservice.exception.ClientFetchException;
 import my.betservice.exception.LeagueNotFoundException;
 import my.betservice.mapper.league.LeagueInfoMapper;
 import my.betservice.service.LeagueService;
@@ -17,20 +19,21 @@ public class LeagueFacade {
     private final LeagueService leagueService;
     private final FootballClient footballClient;
 
-    public LeagueInfoDto getLeagueInfoById(final Long id)
+    public LeagueInfoDtoOut getLeagueInfoById(final Long leagueId)
             throws LeagueNotFoundException {
         return LeagueInfoMapper.mapToLeagueInfoDto(
-                leagueService.getLeagueInfoById(id)
+                leagueService.getLeagueInfoById(leagueId)
                         .orElseThrow(LeagueNotFoundException::new));
     }
 
-    public List<LeagueInfoDto> getAvailableLeaguesInfo() {
+    public List<LeagueInfoDtoOut> getAvailableLeaguesInfo() {
         return LeagueInfoMapper.mapToLeagueInfoDtoList(leagueService.getAvailableLeaguesInfo());
     }
 
-    public LeagueInfoDto fetchNewLeagueToApp(final Long id) {
+    public LeagueInfoDtoOut fetchNewLeagueToApp(final Long leagueId)
+            throws ClientFetchException {
         LeagueInfo leagueInfo =
-                LeagueInfoMapper.mapToLeagueInfo(footballClient.getLeagueInfo(id));
+                LeagueInfoMapper.mapToLeagueInfo(footballClient.getLeagueInfo(leagueId));
         return LeagueInfoMapper.mapToLeagueInfoDto(
                 leagueService.saveNewLeagueInfo(leagueInfo));
     }

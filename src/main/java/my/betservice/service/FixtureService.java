@@ -13,8 +13,9 @@ import java.util.Optional;
 public class FixtureService {
     private final FixtureInfoRepository fixtureInfoRepository;
 
-    public FixtureInfo saveNewFixtureInfo(final FixtureInfo fixtureInfo) {
-        return fixtureInfoRepository.save(fixtureInfo);
+    public List<FixtureInfo> saveNewFixturesInfo(final List<FixtureInfo> fixtureInfo) {
+        fixtureInfo.forEach(fixtureInfoRepository::save);
+        return fixtureInfo;
     }
 
     public List<FixtureInfo> getAvailableFixturesInfo() {

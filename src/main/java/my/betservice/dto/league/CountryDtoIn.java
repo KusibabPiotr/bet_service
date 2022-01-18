@@ -7,10 +7,8 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Data
-@Getter
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CountryDto {
-    private Long id;
+public class CountryDtoIn {
     private String name;
     private String code;
     private String flag;

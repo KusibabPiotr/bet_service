@@ -7,9 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Data
-@Getter
-public class TeamDto {
-    private Long dbId;
+public class TeamDtoInOut {
     @JsonProperty(value = "id")
     private Integer teamId;
     private String name;

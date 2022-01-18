@@ -7,9 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Data
-@Getter
-public class VenueDto {
-    private Long dbId;
+public class VenueDtoIn {
     @JsonProperty(value = "id")
     private Integer venueId;
     private String name;

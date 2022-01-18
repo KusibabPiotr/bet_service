@@ -6,9 +6,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Data
-@Getter
-public class GoalsResultDto {
-    private Long id;
+public class GoalsResultDtoInOut {
     private Integer home;
     private Integer away;
 }
