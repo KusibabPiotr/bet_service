@@ -31,4 +31,22 @@ public class BetCard {
     private LocalDateTime betConfirmedTime;
     private LocalDateTime lastMatchToPlay;
     private boolean finished;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        BetCard betCard = (BetCard) o;
+
+        if (id != null ? !id.equals(betCard.id) : betCard.id != null) return false;
+        return userId.equals(betCard.userId);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + userId.hashCode();
+        return result;
+    }
 }

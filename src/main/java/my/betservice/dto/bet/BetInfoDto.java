@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Builder
 @Data
-public class BetInfoDtoInOut {
+public class BetInfoDto {
     private Long id;
     private LocalDateTime fixtureTime;
     private Integer fixtureId;
