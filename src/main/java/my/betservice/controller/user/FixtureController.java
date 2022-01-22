@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import my.betservice.dto.fixture.FixtureInfoDtoOut;
 import my.betservice.exception.FixtureNotFoundException;
 import my.betservice.facade.FixtureFacade;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,9 +14,15 @@ import java.util.List;
 public class FixtureController {
     private final FixtureFacade fixtureFacade;
 
+//    @GetMapping
+//    public List<FixtureInfoDtoOut> getAvailableFixturesInfo() {
+//        return fixtureFacade.getAvailableFixturesInfo();
+//    }
+
     @GetMapping
-    public List<FixtureInfoDtoOut> getAvailableFixturesInfo() {
-        return fixtureFacade.getAvailableFixturesInfo();
+    public List<FixtureInfoDtoOut> getAvailableFixturesInfoByLeagueId(@RequestParam(defaultValue = "39") Integer leagueId,
+                                                                      @RequestParam(defaultValue = "true") Boolean allMatches) {
+        return fixtureFacade.getAvailableFixturesInfoByLeagueId(leagueId, allMatches);
     }
 
     @GetMapping(value = "/{id}")

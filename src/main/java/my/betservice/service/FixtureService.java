@@ -12,6 +12,7 @@ import java.util.Optional;
 @Service
 public class FixtureService {
     private final FixtureInfoRepository fixtureInfoRepository;
+    private static final String NOT_STARTED = "Not Started";
 
     public List<FixtureInfo> saveNewFixturesInfo(final List<FixtureInfo> fixtureInfo) {
         fixtureInfo.forEach(fixtureInfoRepository::save);
@@ -24,5 +25,12 @@ public class FixtureService {
 
     public Optional<FixtureInfo> getFixtureInfoById(final Long id) {
         return fixtureInfoRepository.findById(id);
+    }
+
+    public List<FixtureInfo> getAvailableFixturesInfoByLeagueId(Integer leagueId, Boolean allMatches) {
+        List<FixtureInfo> matches;
+        if (allMatches) matches = fixtureInfoRepository.findByLeagueId(leagueId);
+        else matches = fixtureInfoRepository.findByLeagueIdAndGameStatus(leagueId, NOT_STARTED);
+        return matches;
     }
 }

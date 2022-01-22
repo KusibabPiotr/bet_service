@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -14,7 +16,7 @@ public class OddInfoDtoOut {
     private String leagueName;
     private String leagueLogo;
     private Integer fixtureId;
-    private String date;
+    private LocalDateTime date;
     private String bookmakerName;
     private String betName;
     private BetValueDtoInOut home;

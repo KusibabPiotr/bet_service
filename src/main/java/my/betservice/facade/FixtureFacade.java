@@ -34,4 +34,8 @@ public class FixtureFacade {
                 fixtureService.getFixtureInfoById(id)
                 .orElseThrow(FixtureNotFoundException::new));
     }
+
+    public List<FixtureInfoDtoOut> getAvailableFixturesInfoByLeagueId(Integer leagueId, Boolean allMatches) {
+        return FixtureInfoMapper.mapToFixtureInfoDtoList(fixtureService.getAvailableFixturesInfoByLeagueId(leagueId, allMatches));
+    }
 }

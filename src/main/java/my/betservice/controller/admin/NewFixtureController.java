@@ -15,7 +15,7 @@ public class NewFixtureController {
 
     @GetMapping(value = "/{leagueId}")
     public List<FixtureInfoDtoOut> fetchNewFixtureToApp(@PathVariable Long leagueId,
-                                                        @RequestParam Integer season ) {
+                                                        @RequestParam(defaultValue = "2021") Integer season ) {
         return fixtureFacade.fetchNewFixturesToApp(leagueId, season);
     }
 }
