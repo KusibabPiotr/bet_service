@@ -15,6 +15,7 @@ import java.util.Optional;
 public class BetCardService {
     private final BetCardRepository betCardRepository;
 
+    //fetch user from security context and change method TO FETCH ALL BETCARDS BELONGS TO >>THIS<< USER
     public List<BetCard> getAllBetCards() {
         return betCardRepository.findAll();
     }

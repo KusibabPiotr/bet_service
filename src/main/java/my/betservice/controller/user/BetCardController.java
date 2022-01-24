@@ -2,9 +2,12 @@ package my.betservice.controller.user;
 
 import lombok.RequiredArgsConstructor;
 import my.betservice.dto.bet.BetCardDto;
+import my.betservice.exception.NotEnoughMoneyOnAccountException;
+import my.betservice.exception.UserNotFoundException;
 import my.betservice.facade.BetCardFacade;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -24,7 +27,8 @@ public class BetCardController {
     }
 
     @PutMapping(value = "/{id}")
-    public BetCardDto confirmBetCardTransaction(@RequestBody BetCardDto betCardDto) {
-        return betFacade.confirmBetCardTransaction(betCardDto);
+    public BetCardDto confirmBetCardTransaction(@PathVariable Long id, @RequestParam BigDecimal betCost)
+            throws NotEnoughMoneyOnAccountException, UserNotFoundException {
+        return betFacade.confirmBetCardTransaction(id, betCost);
     }
 }

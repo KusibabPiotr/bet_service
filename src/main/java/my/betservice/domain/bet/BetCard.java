@@ -1,10 +1,12 @@
 package my.betservice.domain.bet;
 
 import lombok.*;
+import my.betservice.domain.user.AppUser;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -18,19 +20,21 @@ public class BetCard {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
     @OneToMany(
+            mappedBy = "betCard",
             targetEntity = BetInfo.class,
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
-    )
-    private List<BetInfo> betList;
+            fetch = FetchType.LAZY)
+    private List<BetInfo> betList = new ArrayList<>();
     private BigDecimal oddsValue;
     private BigDecimal betCost;
     private BigDecimal toWin;
     private LocalDateTime betConfirmedTime;
     private LocalDateTime lastMatchToPlay;
     private boolean finished;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private AppUser appUser;
+    private Boolean finalWin;
 
     @Override
     public boolean equals(Object o) {
@@ -39,14 +43,11 @@ public class BetCard {
 
         BetCard betCard = (BetCard) o;
 
-        if (id != null ? !id.equals(betCard.id) : betCard.id != null) return false;
-        return userId.equals(betCard.userId);
+        return id != null ? id.equals(betCard.id) : betCard.id == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + userId.hashCode();
-        return result;
+        return id != null ? id.hashCode() : 0;
     }
 }

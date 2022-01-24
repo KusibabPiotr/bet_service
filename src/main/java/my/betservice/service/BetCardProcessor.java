@@ -3,11 +3,12 @@ package my.betservice.service;
 import lombok.RequiredArgsConstructor;
 import my.betservice.dto.bet.BetCardDto;
 import my.betservice.dto.bet.BetInfoDto;
+import my.betservice.exception.NotEnoughMoneyOnAccountException;
+import my.betservice.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,8 +17,12 @@ import java.util.stream.Collectors;
 public class BetCardProcessor {
     private final PaymentProcessor paymentProcessor;
 
-    public BetCardDto processBetCard(final BetCardDto dto) {
-        dto.setOddsValue(BigDecimal.valueOf(countOddsValue(dto)));
+    public BetCardDto processBetCard(final BetCardDto dto)
+            throws NotEnoughMoneyOnAccountException, UserNotFoundException {
+        BigDecimal cardToPayValue = BigDecimal.valueOf(countOddsValue(dto));
+        if (!paymentProcessor.checkIfUserHasEnoughMoney(dto.getBetCost(), dto.getUserId()))
+            throw new NotEnoughMoneyOnAccountException();
+        dto.setOddsValue(cardToPayValue);
         dto.setToWin(countToWinPrize(dto.getBetCost(), dto.getOddsValue()));
         dto.setBetConfirmedTime(LocalDateTime.now());
         dto.setLastMatchToPlay(findLastestMatchDate(dto.getBetList()));

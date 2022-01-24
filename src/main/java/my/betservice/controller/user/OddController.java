@@ -14,7 +14,7 @@ public class OddController {
 
     @GetMapping(value = "/{fixtureId}")
     public OddInfoDtoOut getOddInfoByFixtureAndBetId(@PathVariable Integer fixtureId,
-                                                            @RequestParam Integer betId)
+                                                     @RequestParam Integer betId)
             throws ClientFetchException {
         return oddFacade.getOddInfoByFixtureAndBetId(fixtureId, betId);
     }

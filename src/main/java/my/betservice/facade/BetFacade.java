@@ -3,6 +3,7 @@ package my.betservice.facade;
 import lombok.RequiredArgsConstructor;
 import my.betservice.domain.bet.BetInfo;
 import my.betservice.dto.bet.BetInfoDto;
+import my.betservice.exception.BetNotFoundException;
 import my.betservice.mapper.bet.BetInfoMapper;
 import my.betservice.service.BetService;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,8 @@ public class BetFacade {
         return BetInfoMapper.mapToBetInfoDto(betService.addBetToBetList(betInfo));
     }
 
-    public void deleteBetFromBetList(final Long id) {
+    public void deleteBetFromBetList(final Long id)
+            throws BetNotFoundException {
         betService.deleteBetFromBetList(id);
     }
 

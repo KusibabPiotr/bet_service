@@ -3,6 +3,7 @@ package my.betservice.domain.fixture;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Objects;
 
 @AllArgsConstructor

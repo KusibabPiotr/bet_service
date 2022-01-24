@@ -4,6 +4,9 @@ import my.betservice.dto.odd.OddInfoDtoIn;
 import my.betservice.dto.odd.OddInfoDtoOut;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class OddInfoMapper {
 
@@ -22,6 +25,7 @@ public class OddInfoMapper {
                 .build();
     }
     private static LocalDateTime convertTime(final String time) {
-        return LocalDateTime.parse(time);
+        OffsetDateTime odt = OffsetDateTime.parse(time);
+        return odt.toLocalDateTime();
     }
 }

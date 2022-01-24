@@ -1,5 +1,6 @@
 package my.betservice.dto.bet;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +15,10 @@ import java.time.LocalDateTime;
 @Data
 public class BetInfoDto {
     private Long id;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fixtureTime;
     private Integer fixtureId;
     private BetValueDtoInOut betValue;
+    private Long betCardId;
+    private Long userId;
 }

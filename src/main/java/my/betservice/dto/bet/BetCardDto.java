@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -16,11 +17,12 @@ import java.util.List;
 public class BetCardDto {
     private Long id;
     private Long userId;
-    private List<BetInfoDto> betList;
+    private List<BetInfoDto> betList = new ArrayList<>();
     private BigDecimal oddsValue;
     private BigDecimal betCost;
     private BigDecimal toWin;
     private LocalDateTime betConfirmedTime;
     private LocalDateTime lastMatchToPlay;
     private boolean finished;
+    private Boolean finalWin;
 }

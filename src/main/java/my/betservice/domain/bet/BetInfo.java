@@ -20,6 +20,10 @@ public class BetInfo {
     private Integer fixtureId;
     private String value;
     private String odd;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "BET_CARD_ID")
+    private BetCard betCard;
+    private Long userId;
 
     @Override
     public boolean equals(Object o) {

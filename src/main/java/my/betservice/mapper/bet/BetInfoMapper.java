@@ -10,8 +10,9 @@ import java.util.stream.Collectors;
 public class BetInfoMapper {
     public static BetInfo mapToBetInfo(final BetInfoDto dto) {
         return BetInfo.builder()
-                .fixtureId(dto.getFixtureId())
+                .id(dto.getId())
                 .date(dto.getFixtureTime())
+                .fixtureId(dto.getFixtureId())
                 .value(dto.getBetValue().getValue())
                 .odd(dto.getBetValue().getOdd())
                 .build();
@@ -19,8 +20,12 @@ public class BetInfoMapper {
 
     public static BetInfoDto mapToBetInfoDto(final BetInfo info) {
         return BetInfoDto.builder()
+                .id(info.getId())
+                .fixtureTime(info.getDate())
                 .fixtureId(info.getFixtureId())
                 .betValue(new BetValueDtoInOut(info.getValue(), info.getOdd()))
+                .betCardId(info.getBetCard().getId())
+                .userId(info.getUserId())
                 .build();
     }
 

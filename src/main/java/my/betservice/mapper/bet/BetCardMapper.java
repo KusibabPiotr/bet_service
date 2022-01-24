@@ -11,7 +11,6 @@ public class BetCardMapper {
     public static BetCard mapToBetCard(final BetCardDto dto) {
         return BetCard.builder()
                 .id(dto.getId())
-                .userId(dto.getUserId())
                 .betList(BetInfoMapper.mapToBetInfoList(dto.getBetList()))
                 .oddsValue(dto.getOddsValue())
                 .betCost(dto.getBetCost())
@@ -19,13 +18,14 @@ public class BetCardMapper {
                 .betConfirmedTime(dto.getBetConfirmedTime())
                 .lastMatchToPlay(dto.getLastMatchToPlay())
                 .finished(dto.isFinished())
+                .finalWin(dto.getFinalWin())
                 .build();
     }
 
     public static BetCardDto mapToBetCardDto(final BetCard betCard) {
         return BetCardDto.builder()
                 .id(betCard.getId())
-                .userId(betCard.getUserId())
+                .userId(betCard.getAppUser().getId())
                 .betList(BetInfoMapper.mapToBetInfoDtoList(betCard.getBetList()))
                 .oddsValue(betCard.getOddsValue())
                 .betCost(betCard.getBetCost())
@@ -33,6 +33,7 @@ public class BetCardMapper {
                 .betConfirmedTime(betCard.getBetConfirmedTime())
                 .lastMatchToPlay(betCard.getLastMatchToPlay())
                 .finished(betCard.isFinished())
+                .finalWin(betCard.getFinalWin())
                 .build();
     }
 

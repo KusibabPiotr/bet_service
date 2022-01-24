@@ -14,13 +14,8 @@ import java.util.List;
 public class FixtureController {
     private final FixtureFacade fixtureFacade;
 
-//    @GetMapping
-//    public List<FixtureInfoDtoOut> getAvailableFixturesInfo() {
-//        return fixtureFacade.getAvailableFixturesInfo();
-//    }
-
     @GetMapping
-    public List<FixtureInfoDtoOut> getAvailableFixturesInfoByLeagueId(@RequestParam(defaultValue = "39") Integer leagueId,
+    public List<FixtureInfoDtoOut> getAvailableFixturesInfoByLeagueId(@RequestParam Integer leagueId,
                                                                       @RequestParam(defaultValue = "true") Boolean allMatches) {
         return fixtureFacade.getAvailableFixturesInfoByLeagueId(leagueId, allMatches);
     }
