@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/api/fixtures")
+@RequestMapping("/api/v1/fixtures")
 @RequiredArgsConstructor
 public class FixtureController {
     private final FixtureFacade fixtureFacade;

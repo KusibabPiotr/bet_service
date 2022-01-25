@@ -17,6 +17,11 @@ spring:
     hibernate:
       ddl-auto: update
 
+  security:
+    user:
+      name: user
+      password: user
+
 #api_football_client
 football:
   api:

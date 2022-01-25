@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/api/fetch/fixtures")
+@RequestMapping("/api/v1/fetch/fixtures")
 @RequiredArgsConstructor
 public class NewFixtureController {
     private final FixtureFacade fixtureFacade;

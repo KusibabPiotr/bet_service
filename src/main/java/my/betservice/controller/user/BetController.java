@@ -7,7 +7,7 @@ import my.betservice.facade.BetFacade;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1/api/bets")
+@RequestMapping("/api/v1/bets")
 @RequiredArgsConstructor
 public class BetController {
     private final BetFacade betFacade;

@@ -1,0 +1,71 @@
+package my.betservice.registration.domain;
+
+import lombok.*;
+import my.betservice.domain.user.Customer;
+import my.betservice.registration.AppUserRole;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import javax.persistence.*;
+import java.util.Collection;
+import java.util.Collections;
+
+@Builder
+@Entity(name = "APP_USERS")
+@Getter
+@Setter
+@EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
+public class AppUser implements UserDetails {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String username;
+    private String password;
+    @Enumerated(value = EnumType.STRING)
+    private AppUserRole appUserRole;
+    @OneToOne(cascade = CascadeType.ALL,
+                mappedBy = "customer")
+    @JoinColumn(name = "CUSTOMER_ID")
+    private Customer customer;
+    private Boolean locked;
+    private Boolean enabled;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        var authority = new SimpleGrantedAuthority(appUserRole.name());
+        return Collections.singletonList(authority);
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !locked;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+}

@@ -20,13 +20,20 @@ public class PersonalDetails {
     private String mobileNumber;
     private String email;
     @OneToOne
-    private AppUser appUser;
+    private Customer customer;
 
-    public PersonalDetails(Long id, String firstName, String lastName, String mobileNumber, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.mobileNumber = mobileNumber;
-        this.email = email;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PersonalDetails that = (PersonalDetails) o;
+
+        return id != null ? id.equals(that.id) : that.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 }

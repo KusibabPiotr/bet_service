@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
-@RequestMapping("/v1/api/betCards")
+@RequestMapping("/api/v1/betCards")
 @RequiredArgsConstructor
 public class BetCardController {
     private final BetCardFacade betFacade;

@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Data
-public class AppUserDto {
+public class CustomerDto {
     private Long id;
     private String firstName;
     private String lastName;

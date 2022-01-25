@@ -25,7 +25,7 @@ public class BetCardMapper {
     public static BetCardDto mapToBetCardDto(final BetCard betCard) {
         return BetCardDto.builder()
                 .id(betCard.getId())
-                .userId(betCard.getAppUser().getId())
+                .userId(betCard.getCustomer().getId())
                 .betList(BetInfoMapper.mapToBetInfoDtoList(betCard.getBetList()))
                 .oddsValue(betCard.getOddsValue())
                 .betCost(betCard.getBetCost())

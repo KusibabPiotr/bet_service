@@ -14,12 +14,12 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "APP_USERS")
-public class AppUser {
+@Table(name = "CUSTOMERS")
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(mappedBy = "appUser",
+    @OneToOne(mappedBy = "customer",
                 cascade = CascadeType.ALL)
     @JoinColumn(name = "PERSONAL_DETAILS_ID")
     private PersonalDetails personalDetails;
@@ -27,6 +27,23 @@ public class AppUser {
     @OneToMany(
             targetEntity = BetCard.class,
             cascade = CascadeType.ALL,
-            mappedBy = "appUser")
+            mappedBy = "customer")
     private List<BetCard> betCards = new ArrayList<>();
+    @OneToOne
+    private Customer customer;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Customer customer = (Customer) o;
+
+        return id != null ? id.equals(customer.id) : customer.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
 }

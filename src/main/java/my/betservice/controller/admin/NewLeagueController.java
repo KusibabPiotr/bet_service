@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/v1/api/fetch/leagues")
+@RequestMapping("/api/v1/fetch/leagues")
 @RequiredArgsConstructor
 public class NewLeagueController {
     private final LeagueFacade leagueFacade;

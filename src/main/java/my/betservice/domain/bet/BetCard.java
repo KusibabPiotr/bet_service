@@ -1,7 +1,7 @@
 package my.betservice.domain.bet;
 
 import lombok.*;
-import my.betservice.domain.user.AppUser;
+import my.betservice.domain.user.Customer;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -33,7 +33,7 @@ public class BetCard {
     private LocalDateTime lastMatchToPlay;
     private boolean finished;
     @ManyToOne(fetch = FetchType.LAZY)
-    private AppUser appUser;
+    private Customer customer;
     private Boolean finalWin;
 
     @Override
