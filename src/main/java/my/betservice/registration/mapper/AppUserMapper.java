@@ -11,6 +11,8 @@ public class AppUserMapper {
                 .username(dto.getLogin())
                 .password(dto.getPassword())
                 .appUserRole(AppUserRole.USER)
+                .locked(false)
+                .enabled(false)
                 .build();
     }
 }

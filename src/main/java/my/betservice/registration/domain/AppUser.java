@@ -27,8 +27,7 @@ public class AppUser implements UserDetails {
     private String password;
     @Enumerated(value = EnumType.STRING)
     private AppUserRole appUserRole;
-    @OneToOne(cascade = CascadeType.ALL,
-                mappedBy = "customer")
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
     private Boolean locked;

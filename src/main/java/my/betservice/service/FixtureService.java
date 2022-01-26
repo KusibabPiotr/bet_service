@@ -19,15 +19,11 @@ public class FixtureService {
         return fixtureInfo;
     }
 
-    public List<FixtureInfo> getAvailableFixturesInfo() {
-        return fixtureInfoRepository.findAll();
-    }
-
     public Optional<FixtureInfo> getFixtureInfoById(final Long id) {
         return fixtureInfoRepository.findById(id);
     }
 
-    public List<FixtureInfo> getAvailableFixturesInfoByLeagueId(Integer leagueId, Boolean allMatches) {
+    public List<FixtureInfo> getAvailableFixturesInfoByLeagueId(final Integer leagueId,final Boolean allMatches) {
         List<FixtureInfo> matches;
         if (allMatches) matches = fixtureInfoRepository.findByLeagueId(leagueId);
         else matches = fixtureInfoRepository.findByLeagueIdAndGameStatus(leagueId, NOT_STARTED);

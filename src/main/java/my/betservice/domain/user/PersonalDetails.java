@@ -19,7 +19,7 @@ public class PersonalDetails {
     private String lastName;
     private String mobileNumber;
     private String email;
-    @OneToOne
+    @OneToOne(mappedBy = "personalDetails")
     private Customer customer;
 
     @Override

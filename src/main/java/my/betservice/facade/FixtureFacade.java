@@ -25,10 +25,6 @@ public class FixtureFacade {
                 fixtureService.saveNewFixturesInfo(fixtureInfoList));
     }
 
-    public List<FixtureInfoDtoOut> getAvailableFixturesInfo() {
-        return FixtureInfoMapper.mapToFixtureInfoDtoList(fixtureService.getAvailableFixturesInfo());
-    }
-
     public FixtureInfoDtoOut getFixtureInfoById(final Long id) {
         return FixtureInfoMapper.mapToFixtureDtoOutput(
                 fixtureService.getFixtureInfoById(id)

@@ -2,6 +2,7 @@ package my.betservice.domain.user;
 
 import lombok.*;
 import my.betservice.domain.bet.BetCard;
+import my.betservice.registration.domain.AppUser;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -19,8 +20,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(mappedBy = "customer",
-                cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "PERSONAL_DETAILS_ID")
     private PersonalDetails personalDetails;
     private BigDecimal moneyOnAccount;
@@ -29,8 +29,8 @@ public class Customer {
             cascade = CascadeType.ALL,
             mappedBy = "customer")
     private List<BetCard> betCards = new ArrayList<>();
-    @OneToOne
-    private Customer customer;
+    @OneToOne(mappedBy = "customer")
+    private AppUser appUser;
 
     @Override
     public boolean equals(Object o) {
