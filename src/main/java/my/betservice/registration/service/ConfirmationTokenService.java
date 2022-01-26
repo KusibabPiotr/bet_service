@@ -7,7 +7,6 @@ import my.betservice.registration.domain.ConfirmationToken;
 import my.betservice.registration.repository.ConfirmationTokenRepository;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;

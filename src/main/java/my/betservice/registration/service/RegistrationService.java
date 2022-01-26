@@ -1,12 +1,15 @@
 package my.betservice.registration.service;
 
 import lombok.RequiredArgsConstructor;
+import my.betservice.email.EmailBuilder;
+import my.betservice.email.EmailService;
 import my.betservice.exception.*;
 import my.betservice.registration.domain.ConfirmationToken;
 import my.betservice.registration.dto.RegistrationRequestDto;
 import my.betservice.registration.mapper.AppUserMapper;
 import my.betservice.registration.validator.EmailValidator;
 import my.betservice.registration.validator.PasswordValidator;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,6 +22,9 @@ public class RegistrationService {
     private final PasswordValidator passwordValidator;
     private final AppUserService appUserService;
     private final ConfirmationTokenService confirmationTokenService;
+    private final EmailService emailService;
+    @Value("${confirm_registration_link}")
+    private String linkWithoutToken;
 
     public String register(RegistrationRequestDto request)
             throws EmailNotValidException, PasswordNotMatchException,
@@ -29,7 +35,13 @@ public class RegistrationService {
         if (!passwordValidator.test(request.getPassword(), request.getRepeatPassword())) {
             throw new PasswordNotMatchException();
         }
-        return appUserService.signUpUser(AppUserMapper.mapToAppUser(request));
+
+        String link = linkWithoutToken + appUserService.signUpUser(AppUserMapper.mapToAppUser(request));
+        emailService.send(
+                request.getLogin(),
+                EmailBuilder.buildEmail("Stranger", link));
+
+        return "Email with confirmation request just send";
     }
 
     @Transactional
@@ -44,13 +56,13 @@ public class RegistrationService {
             throw new EmaiAlreadyConfirmedException();
         }
 
-        if (confirmationToken.getExpiresAt().isAfter(LocalDateTime.now())) {
+        if (confirmationToken.getExpiresAt().isBefore(LocalDateTime.now())) {
             throw new TokenExpiredException();
         }
 
         confirmationTokenService.setConfirmedAt(token);
         appUserService.enableAppUser(confirmationToken.getAppUser().getUsername());
 
-        return "confirmed";
+        return "Email successfully confirmed!";
     }
 }

@@ -51,7 +51,7 @@ public class AppUserService implements UserDetailsService {
         ConfirmationToken confirmationToken = confirmationTokenService.createConfirmationToken(appUser);
         confirmationTokenService.saveConfirmationToken(confirmationToken);
 
-        return "it works";
+        return confirmationToken.getToken();
     }
 
 }
