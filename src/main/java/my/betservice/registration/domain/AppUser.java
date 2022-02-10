@@ -30,7 +30,6 @@ public class AppUser implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
-    private Boolean locked;
     private Boolean enabled;
 
     public String getUsername() {
@@ -54,7 +53,7 @@ public class AppUser implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return !locked;
+        return true;
     }
 
     @Override
