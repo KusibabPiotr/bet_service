@@ -8,7 +8,6 @@ import my.betservice.exception.FixtureNotFoundException;
 import my.betservice.mapper.fixture.FixtureInfoMapper;
 import my.betservice.service.FixtureService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -33,10 +32,5 @@ public class FixtureFacade {
 
     public List<FixtureInfoDtoOut> getAvailableFixturesInfoByLeagueId(Integer leagueId, Boolean allMatches) {
         return FixtureInfoMapper.mapToFixtureInfoDtoList(fixtureService.getAvailableFixturesInfoByLeagueId(leagueId, allMatches));
-    }
-
-    public void updateFixturesStatuses() {
-        List<FixtureInfo> fixtureInfos = FixtureInfoMapper.mapToFixtureInfoList(footballClient.getFixtureInfoUpdateToday(39L, 2021));
-        fixtureService.updateFixturesStatuses(fixtureInfos);
     }
 }

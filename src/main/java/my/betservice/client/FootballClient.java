@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import java.net.URI;
 import java.time.LocalDate;
 import java.util.*;
@@ -27,13 +26,18 @@ public class FootballClient {
 
     private static final String HOST_NAME = "x-rapidapi-host";
     private static final String KEY_NAME = "x-rapidapi-key";
-    private static final Integer BOOKMAKER = 7;
+    @Value("${bookmaker_bet365}")
+    private Integer bookmakerBet365;
     @Value("${football.api.key}")
     private String apiKeyValue;
     @Value("${football.api.endpoint}")
     private String apiEndpointValue;
     @Value("${football.api.host}")
     private String apiHostValue;
+    @Value("${premier_league_id}")
+    private Long premierLeagueId;
+    @Value("${actual_season}")
+    private Integer actualSeason;
     private final RestTemplate restTemplate;
 
 
@@ -77,14 +81,13 @@ public class FootballClient {
         }
     }
 
-    public List<FixtureInfoDtoIn> getFixtureInfoUpdateToday(final Long leagueId,
-                                                 final Integer season) {
+    public List<FixtureInfoDtoIn> updatePremierLeagueFixturesStatus() {
         HttpEntity request = setHeaders();
 
         URI uri = UriComponentsBuilder.fromHttpUrl(apiEndpointValue + "fixtures")
-                .queryParam("league", leagueId)
-                .queryParam("season", season)
-                .queryParam("date", LocalDate.of(2022,1,23))
+                .queryParam("league", premierLeagueId)
+                .queryParam("season", actualSeason)
+                .queryParam("date", LocalDate.now())
                 .build().encode().toUri();
 
         try {
@@ -105,7 +108,7 @@ public class FootballClient {
         HttpEntity request = setHeaders();
 
         URI uri = UriComponentsBuilder.fromHttpUrl(apiEndpointValue + "odds")
-                .queryParam("bookmaker", BOOKMAKER)
+                .queryParam("bookmaker", bookmakerBet365)
                 .queryParam("fixture", fixtureId)
                 .queryParam("bet", betId)
                 .build().encode().toUri();

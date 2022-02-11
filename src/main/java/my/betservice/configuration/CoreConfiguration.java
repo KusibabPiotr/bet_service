@@ -3,6 +3,7 @@ package my.betservice.configuration;
 import my.betservice.jwt.settings.JwtConstant;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -20,6 +21,7 @@ import static java.util.Collections.singletonList;
 
 @Configuration
 @EnableSwagger2
+@EnableScheduling
 public class CoreConfiguration {
     @Bean
     public RestTemplate restTemplate() {

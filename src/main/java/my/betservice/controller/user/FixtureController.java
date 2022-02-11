@@ -24,9 +24,4 @@ public class FixtureController {
     throws FixtureNotFoundException {
         return fixtureFacade.getFixtureInfoById(id);
     }
-
-    @PostMapping
-    public void updateFixturesStatuses(@RequestParam final Long leagueId,@RequestParam final Integer season) {
-        fixtureFacade.updateFixturesStatuses();
-    }
 }
