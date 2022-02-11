@@ -2,7 +2,6 @@ package my.betservice.domain.bet;
 
 import lombok.*;
 import my.betservice.domain.user.Customer;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import my.betservice.dto.odd.BetValueDtoInOut;
-
 import java.time.LocalDateTime;
 
 @AllArgsConstructor

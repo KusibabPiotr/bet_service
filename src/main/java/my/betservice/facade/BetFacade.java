@@ -15,7 +15,7 @@ public class BetFacade {
 
     public BetInfoDto addBetToBetList(final BetInfoDto betInfoDto) {
         BetInfo betInfo = BetInfoMapper.mapToBetInfo(betInfoDto);
-        return BetInfoMapper.mapToBetInfoDto(betService.addBetToBetList(betInfo));
+        return BetInfoMapper.mapToBetInfoDto(betService.addBetToBetListOfThisUser(betInfo));
     }
 
     public void deleteBetFromBetList(final Long id)

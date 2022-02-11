@@ -6,7 +6,6 @@ import my.betservice.registration.AppUserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
@@ -31,6 +30,11 @@ public class AppUser implements UserDetails {
     @JoinColumn(name = "CUSTOMER_ID")
     private Customer customer;
     private Boolean enabled;
+
+    public AppUser(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public String getUsername() {
         return username;

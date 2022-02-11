@@ -6,7 +6,6 @@ import my.betservice.domain.bet.BetInfo;
 import my.betservice.repository.BetCardRepository;
 import my.betservice.repository.BetInfoRepository;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 
 @RequiredArgsConstructor
@@ -14,12 +13,12 @@ import javax.transaction.Transactional;
 public class BetService {
     private final BetCardRepository betCardRepository;
     private final BetInfoRepository betInfoRepository;
+    private final CustomerService customerService;
     private static final Boolean IS_FINISHED = false;
 
-    //fetch user from security context and change method ADD BET TO LIST BELONGS TO >>THIS<< USER
     @Transactional
-    public BetInfo addBetToBetList(final BetInfo betInfo) {
-        BetCard betCard = betCardRepository.findByFinished(IS_FINISHED);
+    public BetInfo addBetToBetListOfThisUser(final BetInfo betInfo) {
+        BetCard betCard = betCardRepository.findByFinishedAndCustomer(IS_FINISHED,customerService.getCurrentLoggedInCustomer());
         betCard.getBetList().add(betInfo);
         betInfo.setBetCard(betCard);
         return betInfo;
@@ -28,4 +27,5 @@ public class BetService {
     public void deleteBetFromBetList(final Long id) {
         betInfoRepository.deleteById(id);
     }
+
 }

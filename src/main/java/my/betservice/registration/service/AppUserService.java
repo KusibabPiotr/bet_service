@@ -1,10 +1,12 @@
 package my.betservice.registration.service;
 
 import lombok.RequiredArgsConstructor;
+import my.betservice.domain.user.Customer;
 import my.betservice.exception.EmailAlreadyExistsInDatabase;
 import my.betservice.registration.domain.AppUser;
 import my.betservice.registration.domain.ConfirmationToken;
 import my.betservice.registration.repository.AppUserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -52,6 +54,12 @@ public class AppUserService implements UserDetailsService {
         confirmationTokenService.saveConfirmationToken(confirmationToken);
 
         return confirmationToken.getToken();
+    }
+
+    public AppUser getCurrentLoggedInAppUser() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = principal.toString();
+        return  (AppUser)loadUserByUsername(username);
     }
 
 }

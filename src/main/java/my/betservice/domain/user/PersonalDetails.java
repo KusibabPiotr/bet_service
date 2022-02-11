@@ -19,8 +19,6 @@ public class PersonalDetails {
     private String lastName;
     private String mobileNumber;
     private String email;
-    @OneToOne(mappedBy = "personalDetails")
-    private Customer customer;
 
     @Override
     public boolean equals(Object o) {

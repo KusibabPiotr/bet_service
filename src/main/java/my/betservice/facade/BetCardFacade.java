@@ -9,7 +9,6 @@ import my.betservice.mapper.bet.BetCardMapper;
 import my.betservice.service.BetCardProcessor;
 import my.betservice.service.BetCardService;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.util.List;
@@ -20,8 +19,8 @@ public class BetCardFacade {
     private final BetCardService betCardService;
     private final BetCardProcessor betCardProcessor;
 
-    public List<BetCardDto> getAllBetCards() {
-        return BetCardMapper.mapToBetCardDtoList(betCardService.getAllBetCards());
+    public List<BetCardDto> getAllUserBetCards() {
+        return BetCardMapper.mapToBetCardDtoList(betCardService.getAllUserBetCards());
     }
 
     public BetCardDto getBetCardById(final Long id) {

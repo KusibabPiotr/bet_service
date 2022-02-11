@@ -16,10 +16,10 @@ import java.util.List;
 public class BetCardController {
     private final BetCardFacade betFacade;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAnyAuthority('USER','ADMIN')")
     @GetMapping
-    public List<BetCardDto> getAllBetCards() {
-        return betFacade.getAllBetCards();
+    public List<BetCardDto> getAllUsersBetCards() {
+        return betFacade.getAllUserBetCards();
     }
 
     @PreAuthorize("hasAnyAuthority('USER','ADMIN')")

@@ -3,7 +3,6 @@ package my.betservice.domain.user;
 import lombok.*;
 import my.betservice.domain.bet.BetCard;
 import my.betservice.registration.domain.AppUser;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;

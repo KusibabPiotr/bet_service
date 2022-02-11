@@ -9,7 +9,6 @@ import java.util.List;
 import static java.util.stream.Collectors.toList;
 
 public class LeagueInfoMapper {
-
     public static LeagueInfo mapToLeagueInfo(final LeagueInfoDtoIn dto) {
         return LeagueInfo.builder()
                 .leagueId(dto.getLeague().getLeagueId())

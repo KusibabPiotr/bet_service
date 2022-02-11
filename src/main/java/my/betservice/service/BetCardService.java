@@ -6,7 +6,6 @@ import my.betservice.dto.bet.BetCardDto;
 import my.betservice.exception.BetCardNotFoundException;
 import my.betservice.repository.BetCardRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -14,10 +13,10 @@ import java.util.Optional;
 @Service
 public class BetCardService {
     private final BetCardRepository betCardRepository;
+    private final CustomerService customerService;
 
-    //fetch user from security context and change method TO FETCH ALL BETCARDS BELONGS TO >>THIS<< USER
-    public List<BetCard> getAllBetCards() {
-        return betCardRepository.findAll();
+    public List<BetCard> getAllUserBetCards() {
+        return betCardRepository.findAllByCustomer(customerService.getCurrentLoggedInCustomer());
     }
 
     public Optional<BetCard> getBetCardById(final Long id) {

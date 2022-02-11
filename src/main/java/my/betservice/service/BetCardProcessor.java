@@ -6,7 +6,6 @@ import my.betservice.dto.bet.BetInfoDto;
 import my.betservice.exception.NotEnoughMoneyOnAccountException;
 import my.betservice.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
