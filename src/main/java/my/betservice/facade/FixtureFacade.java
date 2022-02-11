@@ -34,4 +34,9 @@ public class FixtureFacade {
     public List<FixtureInfoDtoOut> getAvailableFixturesInfoByLeagueId(Integer leagueId, Boolean allMatches) {
         return FixtureInfoMapper.mapToFixtureInfoDtoList(fixtureService.getAvailableFixturesInfoByLeagueId(leagueId, allMatches));
     }
+
+    public void updateFixturesStatuses() {
+        List<FixtureInfo> fixtureInfos = FixtureInfoMapper.mapToFixtureInfoList(footballClient.getFixtureInfoUpdateToday(39L, 2021));
+        fixtureService.updateFixturesStatuses(fixtureInfos);
+    }
 }

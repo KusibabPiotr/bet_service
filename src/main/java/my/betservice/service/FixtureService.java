@@ -2,9 +2,10 @@ package my.betservice.service;
 
 import lombok.RequiredArgsConstructor;
 import my.betservice.domain.fixture.FixtureInfo;
+import my.betservice.exception.FixtureNotFoundException;
 import my.betservice.repository.FixtureInfoRepository;
 import org.springframework.stereotype.Service;
-
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,24 @@ public class FixtureService {
     public List<FixtureInfo> saveNewFixturesInfo(final List<FixtureInfo> fixtureInfo) {
         fixtureInfo.forEach(fixtureInfoRepository::save);
         return fixtureInfo;
+    }
+
+    @Transactional
+    public void updateFixturesStatuses(final List<FixtureInfo> fixtureInfo) {
+        fixtureInfo
+                .forEach(e -> {
+                    FixtureInfo fixtureFromDb = fixtureInfoRepository
+                            .findByFixtureId(e.getFixtureId())
+                            .orElseThrow(FixtureNotFoundException::new);
+                    fixtureFromDb.setGameStatus(e.getGameStatus());
+                    fixtureFromDb.setHomeResult(e.getHomeResult());
+                    fixtureFromDb.setAwayResult(e.getAwayResult());
+                    fixtureFromDb.setHalftime(e.getHalftime());
+                    fixtureFromDb.setFulltime(e.getFulltime());
+                    fixtureFromDb.setExtratime(e.getExtratime());
+                    fixtureFromDb.setPenalty(e.getPenalty());
+                    fixtureInfoRepository.save(fixtureFromDb);
+                });
     }
 
     public Optional<FixtureInfo> getFixtureInfoById(final Long id) {

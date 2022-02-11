@@ -17,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.*;
 
 @Component
@@ -61,6 +62,29 @@ public class FootballClient {
         URI uri = UriComponentsBuilder.fromHttpUrl(apiEndpointValue + "fixtures")
                 .queryParam("league", leagueId)
                 .queryParam("season", season)
+                .build().encode().toUri();
+
+        try {
+            ResponseEntity<FixtureInfoPackageDtoIn> response = restTemplate.exchange(
+                    uri,
+                    HttpMethod.GET,
+                    request,
+                    FixtureInfoPackageDtoIn.class);
+            return response.getBody().getFixtureInfoDtoIn();
+        } catch (RestClientException e) {
+            log.warn(e.getMessage(),e);
+            return new ArrayList<>();
+        }
+    }
+
+    public List<FixtureInfoDtoIn> getFixtureInfoUpdateToday(final Long leagueId,
+                                                 final Integer season) {
+        HttpEntity request = setHeaders();
+
+        URI uri = UriComponentsBuilder.fromHttpUrl(apiEndpointValue + "fixtures")
+                .queryParam("league", leagueId)
+                .queryParam("season", season)
+                .queryParam("date", LocalDate.of(2022,1,23))
                 .build().encode().toUri();
 
         try {

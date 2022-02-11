@@ -5,7 +5,6 @@ import my.betservice.dto.fixture.FixtureInfoDtoOut;
 import my.betservice.exception.FixtureNotFoundException;
 import my.betservice.facade.FixtureFacade;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -24,5 +23,10 @@ public class FixtureController {
     public FixtureInfoDtoOut getFixtureInfoById(@PathVariable Long id)
     throws FixtureNotFoundException {
         return fixtureFacade.getFixtureInfoById(id);
+    }
+
+    @PostMapping
+    public void updateFixturesStatuses(@RequestParam final Long leagueId,@RequestParam final Integer season) {
+        fixtureFacade.updateFixturesStatuses();
     }
 }
