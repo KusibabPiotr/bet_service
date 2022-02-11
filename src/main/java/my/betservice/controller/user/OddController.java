@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import my.betservice.dto.odd.OddInfoDtoOut;
 import my.betservice.exception.ClientFetchException;
 import my.betservice.facade.OddFacade;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class OddController {
     private final OddFacade oddFacade;
 
+    @PreAuthorize("hasAnyAuthority('USER','ADMIN')")
     @GetMapping(value = "/{fixtureId}")
     public OddInfoDtoOut getOddInfoByFixtureAndBetId(@PathVariable Integer fixtureId,
                                                      @RequestParam Integer betId)

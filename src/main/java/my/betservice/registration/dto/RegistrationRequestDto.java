@@ -1,18 +1,18 @@
 package my.betservice.registration.dto;
 
 import lombok.*;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-@Data
+@Getter
+@NoArgsConstructor
 public class RegistrationRequestDto {
 
     @Email(message = "Provide right email format!")
     @NotBlank(message = "Email is mandatory!")
-    private final String login;
+    private String email;
     @NotBlank(message = "Password is mandatory!")
-    private final String password;
+    private String password;
     @NotBlank(message = "Repeat your password")
-    private final String repeatPassword;
+    private String repeatPassword;
 }

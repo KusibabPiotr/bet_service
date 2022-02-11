@@ -3,10 +3,10 @@ package my.betservice.email;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.MailSendException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
@@ -29,7 +29,7 @@ public class EmailService implements EmailSender {
             helper.setSubject(CONFIRMATION_SUBJECT);
             helper.setFrom(adminEmail);
             mailSender.send(myMessage);
-        } catch (MessagingException e) {
+        } catch (MessagingException | MailSendException e) {
             log.error("Failed to send email", e);
         }
     }

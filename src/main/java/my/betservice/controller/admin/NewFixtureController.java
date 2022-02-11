@@ -3,8 +3,8 @@ package my.betservice.controller.admin;
 import lombok.RequiredArgsConstructor;
 import my.betservice.dto.fixture.FixtureInfoDtoOut;
 import my.betservice.facade.FixtureFacade;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -13,6 +13,7 @@ import java.util.List;
 public class NewFixtureController {
     private final FixtureFacade fixtureFacade;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(value = "/{leagueId}")
     public List<FixtureInfoDtoOut> fetchNewFixtureToApp(@PathVariable Long leagueId,
                                                         @RequestParam(defaultValue = "2021") Integer season ) {

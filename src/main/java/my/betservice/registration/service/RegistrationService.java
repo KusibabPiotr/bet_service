@@ -11,7 +11,6 @@ import my.betservice.registration.validator.EmailValidator;
 import my.betservice.registration.validator.PasswordValidator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
@@ -29,7 +28,7 @@ public class RegistrationService {
     public String register(RegistrationRequestDto request)
             throws EmailNotValidException, PasswordNotMatchException,
             EmailAlreadyExistsInDatabase {
-        if (!emailValidator.test(request.getLogin())) {
+        if (!emailValidator.test(request.getEmail())) {
             throw new EmailNotValidException();
         }
         if (!passwordValidator.test(request.getPassword(), request.getRepeatPassword())) {
@@ -38,7 +37,7 @@ public class RegistrationService {
 
         String link = linkWithoutToken + appUserService.signUpUser(AppUserMapper.mapToAppUser(request));
         emailService.send(
-                request.getLogin(),
+                request.getEmail(),
                 EmailBuilder.buildEmail("Stranger", link));
 
         return "Email with confirmation request just send";
