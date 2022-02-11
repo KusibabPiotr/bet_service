@@ -21,7 +21,6 @@ import static java.util.Collections.singletonList;
 @Configuration
 @EnableSwagger2
 public class CoreConfiguration {
-
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
@@ -31,7 +30,7 @@ public class CoreConfiguration {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("ka.piotr"))
+                .apis(RequestHandlerSelectors.basePackage("my.betservice"))
                 .paths(PathSelectors.any())
                 .build()
                 .securitySchemes(singletonList(createSchema()))
@@ -55,5 +54,4 @@ public class CoreConfiguration {
     private SecurityScheme createSchema() {
         return new ApiKey("apiKey", JwtConstant.ACCESS_TOKEN_HEADER, "header");
     }
-
 }

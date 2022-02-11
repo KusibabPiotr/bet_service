@@ -3,11 +3,6 @@ package my.betservice.mapper.odd;
 import my.betservice.dto.odd.OddInfoDtoIn;
 import my.betservice.dto.odd.OddInfoDtoOut;
 
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-
 public class OddInfoMapper {
 
     public static OddInfoDtoOut mapToOutDto(final OddInfoDtoIn in) {
@@ -16,16 +11,12 @@ public class OddInfoMapper {
                 .leagueName(in.getLeague().getName())
                 .leagueLogo(in.getLeague().getLogo())
                 .fixtureId(in.getFixture().getFixtureId())
-                .date(convertTime(in.getFixture().getDate()))
+                .date(in.getFixture().getDate())
                 .bookmakerName(in.getBookmakers()[0].getName())
                 .betName(in.getBookmakers()[0].getBets()[0].getName())
                 .home(in.getBookmakers()[0].getBets()[0].getBetValues()[0])
                 .draw(in.getBookmakers()[0].getBets()[0].getBetValues()[1])
                 .away(in.getBookmakers()[0].getBets()[0].getBetValues()[2])
                 .build();
-    }
-    private static LocalDateTime convertTime(final String time) {
-        OffsetDateTime odt = OffsetDateTime.parse(time);
-        return odt.toLocalDateTime();
     }
 }
