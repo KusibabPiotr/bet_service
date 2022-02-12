@@ -19,7 +19,7 @@ public class BetCardProcessor {
     public BetCardDto processBetCard(final BetCardDto dto)
             throws NotEnoughMoneyOnAccountException, UserNotFoundException {
         BigDecimal cardToPayValue = BigDecimal.valueOf(countOddsValue(dto));
-        if (!paymentProcessor.checkIfUserHasEnoughMoney(dto.getBetCost(), dto.getUserId()))
+        if (!paymentProcessor.checkIfUserHasEnoughMoney(dto.getBetCost()))
             throw new NotEnoughMoneyOnAccountException();
         dto.setOddsValue(cardToPayValue);
         dto.setToWin(countToWinPrize(dto.getBetCost(), dto.getOddsValue()));

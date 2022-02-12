@@ -19,12 +19,12 @@ public class BetCardService {
         return betCardRepository.findAllByCustomer(customerService.getCurrentLoggedInCustomer());
     }
 
-    public Optional<BetCard> getBetCardById(final Long id) {
-        return betCardRepository.findById(id);
+    public BetCard getBetCardById(final Long id) {
+        return betCardRepository.findById(id).orElseThrow(BetCardNotFoundException::new);
     }
 
     public BetCard confirmBetCardTransaction(final BetCardDto processed) {
-        BetCard betCard = getBetCardById(processed.getId()).orElseThrow(BetCardNotFoundException::new);
+        BetCard betCard = getBetCardById(processed.getId());
         betCard.setOddsValue(processed.getOddsValue());
         betCard.setBetCost(processed.getBetCost());
         betCard.setToWin(processed.getToWin());

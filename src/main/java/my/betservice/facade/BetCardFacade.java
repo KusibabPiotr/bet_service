@@ -2,7 +2,6 @@ package my.betservice.facade;
 
 import lombok.RequiredArgsConstructor;
 import my.betservice.dto.bet.BetCardDto;
-import my.betservice.exception.BetCardNotFoundException;
 import my.betservice.exception.NotEnoughMoneyOnAccountException;
 import my.betservice.exception.UserNotFoundException;
 import my.betservice.mapper.bet.BetCardMapper;
@@ -24,15 +23,14 @@ public class BetCardFacade {
     }
 
     public BetCardDto getBetCardById(final Long id) {
-        return BetCardMapper.mapToBetCardDto(betCardService.getBetCardById(id).orElseThrow(BetCardNotFoundException::new));
+        return BetCardMapper.mapToBetCardDto(betCardService.getBetCardById(id));
     }
 
     @Transactional
     public BetCardDto confirmBetCardTransaction(final Long id, final BigDecimal betCost)
             throws NotEnoughMoneyOnAccountException, UserNotFoundException {
         BetCardDto betCardDto = BetCardMapper.mapToBetCardDto(betCardService
-                .getBetCardById(id)
-                .orElseThrow(BetCardNotFoundException::new));
+                .getBetCardById(id));
         betCardDto.setBetCost(betCost);
         BetCardDto processed = betCardProcessor.processBetCard(betCardDto);
         return BetCardMapper.mapToBetCardDto(betCardService.confirmBetCardTransaction(processed));

@@ -3,7 +3,6 @@ package my.betservice.facade;
 import lombok.RequiredArgsConstructor;
 import my.betservice.client.FootballClient;
 import my.betservice.domain.league.LeagueInfo;
-import my.betservice.dto.league.LeagueInfoDtoIn;
 import my.betservice.dto.league.LeagueInfoDtoOut;
 import my.betservice.exception.ClientFetchException;
 import my.betservice.exception.LeagueNotFoundException;
@@ -22,8 +21,7 @@ public class LeagueFacade {
     public LeagueInfoDtoOut getLeagueInfoById(final Long leagueId)
             throws LeagueNotFoundException {
         return LeagueInfoMapper.mapToLeagueInfoDto(
-                leagueService.getLeagueInfoById(leagueId)
-                        .orElseThrow(LeagueNotFoundException::new));
+                leagueService.getLeagueInfoById(leagueId));
     }
 
     public List<LeagueInfoDtoOut> getAvailableLeaguesInfo() {
