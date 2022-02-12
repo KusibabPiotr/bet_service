@@ -1,4 +1,4 @@
 package my.betservice.exception;
 
-public class TokenNotFoundException extends Exception{
+public class TokenNotFoundException extends RuntimeException {
 }

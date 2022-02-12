@@ -1,4 +1,4 @@
 package my.betservice.exception;
 
-public class ClientFetchException extends Exception{
+public class ClientFetchException extends RuntimeException{
 }

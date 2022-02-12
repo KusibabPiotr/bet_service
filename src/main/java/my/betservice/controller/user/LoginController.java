@@ -1,4 +1,4 @@
-package my.betservice.controller;
+package my.betservice.controller.user;
 
 import my.betservice.dto.user.LoginCredentials;
 import org.springframework.web.bind.annotation.PostMapping;

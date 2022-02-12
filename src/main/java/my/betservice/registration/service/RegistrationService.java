@@ -27,7 +27,7 @@ public class RegistrationService {
 
     public String register(RegistrationRequestDto request)
             throws EmailNotValidException, PasswordNotMatchException,
-            EmailAlreadyExistsInDatabase {
+            EmailAlreadyExistsInDatabaseException {
         if (!emailValidator.test(request.getEmail())) {
             throw new EmailNotValidException();
         }

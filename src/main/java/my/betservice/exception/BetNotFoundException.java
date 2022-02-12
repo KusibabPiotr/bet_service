@@ -1,4 +1,4 @@
 package my.betservice.exception;
 
-public class BetNotFoundException extends Exception{
+public class BetNotFoundException extends RuntimeException{
 }

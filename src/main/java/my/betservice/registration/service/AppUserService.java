@@ -1,8 +1,7 @@
 package my.betservice.registration.service;
 
 import lombok.RequiredArgsConstructor;
-import my.betservice.domain.user.Customer;
-import my.betservice.exception.EmailAlreadyExistsInDatabase;
+import my.betservice.exception.EmailAlreadyExistsInDatabaseException;
 import my.betservice.registration.domain.AppUser;
 import my.betservice.registration.domain.ConfirmationToken;
 import my.betservice.registration.repository.AppUserRepository;
@@ -41,11 +40,11 @@ public class AppUserService implements UserDetailsService {
 
     @Transactional
     public String signUpUser(final AppUser appUser)
-            throws EmailAlreadyExistsInDatabase {
+            throws EmailAlreadyExistsInDatabaseException {
         boolean alreadyExists = appUserRepository
                 .findByUsername(appUser.getUsername())
                 .isPresent();
-        if (alreadyExists) throw new EmailAlreadyExistsInDatabase();
+        if (alreadyExists) throw new EmailAlreadyExistsInDatabaseException();
 
         appUser.setPassword(bCryptPasswordEncoder.encode(appUser.getPassword()));
         appUserRepository.save(appUser);

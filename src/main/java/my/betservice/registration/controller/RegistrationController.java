@@ -15,7 +15,7 @@ public class RegistrationController {
     @PostMapping
     public String register(@RequestBody RegistrationRequestDto request)
             throws EmailNotValidException, PasswordNotMatchException,
-            EmailAlreadyExistsInDatabase {
+            EmailAlreadyExistsInDatabaseException {
         return registrationService.register(request);
     }
 

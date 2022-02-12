@@ -1,4 +1,4 @@
 package my.betservice.exception;
 
-public class EmailNotValidException extends Exception{
+public class EmailNotValidException extends RuntimeException {
 }
