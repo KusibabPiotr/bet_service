@@ -19,5 +19,4 @@ public class BetInfoDto {
     private Integer fixtureId;
     private BetValueDtoInOut betValue;
     private Long betCardId;
-    private Long userId;
 }

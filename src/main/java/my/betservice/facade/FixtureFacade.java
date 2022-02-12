@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import my.betservice.client.FootballClient;
 import my.betservice.domain.fixture.FixtureInfo;
 import my.betservice.dto.fixture.FixtureInfoDtoOut;
-import my.betservice.exception.FixtureNotFoundException;
 import my.betservice.mapper.fixture.FixtureInfoMapper;
 import my.betservice.service.FixtureService;
 import org.springframework.stereotype.Service;
@@ -26,8 +25,7 @@ public class FixtureFacade {
 
     public FixtureInfoDtoOut getFixtureInfoById(final Long id) {
         return FixtureInfoMapper.mapToFixtureDtoOutput(
-                fixtureService.getFixtureInfoById(id)
-                .orElseThrow(FixtureNotFoundException::new));
+                fixtureService.getFixtureInfoById(id));
     }
 
     public List<FixtureInfoDtoOut> getAvailableFixturesInfoByLeagueId(Integer leagueId, Boolean allMatches) {

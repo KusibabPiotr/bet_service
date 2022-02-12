@@ -23,9 +23,9 @@ import java.util.*;
 @RequiredArgsConstructor
 @Slf4j
 public class FootballClient {
-
     private static final String HOST_NAME = "x-rapidapi-host";
     private static final String KEY_NAME = "x-rapidapi-key";
+    private static final Integer WIN_MATCH_BET = 1;
     @Value("${bookmaker_bet365}")
     private Integer bookmakerBet365;
     @Value("${football.api.key}")
@@ -103,14 +103,13 @@ public class FootballClient {
         }
     }
 
-    public OddInfoDtoIn getOddInfoByFixtureAndBetId(final Integer fixtureId,
-                                                    final Integer betId) throws ClientFetchException {
+    public OddInfoDtoIn getOddInfoByFixture(final Integer fixtureId) throws ClientFetchException {
         HttpEntity request = setHeaders();
 
         URI uri = UriComponentsBuilder.fromHttpUrl(apiEndpointValue + "odds")
                 .queryParam("bookmaker", bookmakerBet365)
                 .queryParam("fixture", fixtureId)
-                .queryParam("bet", betId)
+                .queryParam("bet", WIN_MATCH_BET)
                 .build().encode().toUri();
 
         try {

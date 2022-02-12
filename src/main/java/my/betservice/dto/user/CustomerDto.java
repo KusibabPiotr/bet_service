@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import my.betservice.dto.bet.BetCardDto;
+import my.betservice.dto.bet.BetCartDto;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -18,5 +18,5 @@ public class CustomerDto {
     private Long id;
     private BigDecimal moneyOnAccount;
     private PersonalDetailsDto personalDetails;
-    private List<BetCardDto> betCards = new ArrayList<>();
+    private List<BetCartDto> betCards = new ArrayList<>();
 }

@@ -10,7 +10,7 @@ public class CustomerMapper {
                 .id(dto.getId())
                 .moneyOnAccount(dto.getMoneyOnAccount())
                 .personalDetails(PersonalDetailsMapper.mapToPersonalDetails(dto.getPersonalDetails()))
-                .betCards(BetCardMapper.mapToBetCardList(dto.getBetCards()))
+                .betCarts(BetCardMapper.mapToBetCardList(dto.getBetCards()))
                 .build();
     }
 
@@ -19,7 +19,7 @@ public class CustomerMapper {
                 .id(customer.getId())
                 .moneyOnAccount(customer.getMoneyOnAccount())
                 .personalDetails(PersonalDetailsMapper.mapToPersonalDetailsDto(customer.getPersonalDetails()))
-                .betCards(BetCardMapper.mapToBetCardDtoList(customer.getBetCards()))
+                .betCards(BetCardMapper.mapToBetCardDtoList(customer.getBetCarts()))
                 .build();
     }
 }

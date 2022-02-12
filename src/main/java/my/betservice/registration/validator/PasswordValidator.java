@@ -1,7 +1,6 @@
 package my.betservice.registration.validator;
 
 import org.springframework.stereotype.Service;
-
 import java.util.function.BiPredicate;
 
 @Service

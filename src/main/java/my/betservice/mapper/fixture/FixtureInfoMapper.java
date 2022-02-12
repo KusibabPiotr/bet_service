@@ -3,9 +3,7 @@ package my.betservice.mapper.fixture;
 import my.betservice.domain.fixture.FixtureInfo;
 import my.betservice.dto.fixture.FixtureInfoDtoIn;
 import my.betservice.dto.fixture.FixtureInfoDtoOut;
-
 import java.util.List;
-
 import static java.util.stream.Collectors.toList;
 
 public class FixtureInfoMapper {

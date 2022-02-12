@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-public class LeagueInfoDtoOut {
+public class 
+LeagueInfoDtoOut {
     private Long id;
     private Integer leagueId;
     private String leagueName;

@@ -14,15 +14,15 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "BET_CARDS")
-public class BetCard {
+@Table(name = "BET_CARTS")
+public class BetCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToMany(
-            mappedBy = "betCard",
+            mappedBy = "betCart",
             targetEntity = BetInfo.class,
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.REMOVE,
             fetch = FetchType.LAZY)
     private List<BetInfo> betList = new ArrayList<>();
     private BigDecimal oddsValue;
@@ -40,9 +40,9 @@ public class BetCard {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BetCard betCard = (BetCard) o;
+        BetCart betCart = (BetCart) o;
 
-        return id != null ? id.equals(betCard.id) : betCard.id == null;
+        return id != null ? id.equals(betCart.id) : betCart.id == null;
     }
 
     @Override

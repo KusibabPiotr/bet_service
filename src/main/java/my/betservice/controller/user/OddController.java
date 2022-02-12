@@ -15,9 +15,8 @@ public class OddController {
 
     @PreAuthorize("hasAnyAuthority('USER','ADMIN')")
     @GetMapping(value = "/{fixtureId}")
-    public OddInfoDtoOut getOddInfoByFixtureAndBetId(@PathVariable Integer fixtureId,
-                                                     @RequestParam Integer betId)
+    public OddInfoDtoOut getOddInfoByFixture(@PathVariable Integer fixtureId)
             throws ClientFetchException {
-        return oddFacade.getOddInfoByFixtureAndBetId(fixtureId, betId);
+        return oddFacade.getOddInfoByFixture(fixtureId);
     }
 }

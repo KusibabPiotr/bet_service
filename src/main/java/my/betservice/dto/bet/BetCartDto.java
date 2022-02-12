@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Data
-public class BetCardDto {
+public class BetCartDto {
     private Long id;
     private Long userId;
     private List<BetInfoDto> betList = new ArrayList<>();

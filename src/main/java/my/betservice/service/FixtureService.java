@@ -7,7 +7,6 @@ import my.betservice.repository.FixtureInfoRepository;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -38,8 +37,9 @@ public class FixtureService {
                 });
     }
 
-    public Optional<FixtureInfo> getFixtureInfoById(final Long id) {
-        return fixtureInfoRepository.findById(id);
+    public FixtureInfo getFixtureInfoById(final Long id) {
+        return fixtureInfoRepository.findById(id)
+                .orElseThrow(FixtureNotFoundException::new);
     }
 
     public List<FixtureInfo> getAvailableFixturesInfoByLeagueId(final Integer leagueId,final Boolean allMatches) {

@@ -16,4 +16,9 @@ public class CustomerFacade {
         Customer customer = CustomerMapper.mapToCustomer(dto);
         return CustomerMapper.mapToCustomerDto(customerService.createCustomer(customer));
     }
+
+    public CustomerDto updateCustomerPersonalDetails(final CustomerDto dto, final Long id) {
+        Customer customer = CustomerMapper.mapToCustomer(dto);
+        return CustomerMapper.mapToCustomerDto(customerService.updateCustomerPersonalDetails(customer, id));
+    }
 }

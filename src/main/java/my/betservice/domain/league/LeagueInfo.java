@@ -1,7 +1,6 @@
 package my.betservice.domain.league;
 
 import lombok.*;
-
 import javax.persistence.*;
 import java.util.Objects;
 

@@ -3,7 +3,6 @@ package my.betservice.mapper.bet;
 import my.betservice.domain.bet.BetInfo;
 import my.betservice.dto.bet.BetInfoDto;
 import my.betservice.dto.odd.BetValueDtoInOut;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,8 +23,7 @@ public class BetInfoMapper {
                 .fixtureTime(info.getDate())
                 .fixtureId(info.getFixtureId())
                 .betValue(new BetValueDtoInOut(info.getValue(), info.getOdd()))
-                .betCardId(info.getBetCard().getId())
-                .userId(info.getUserId())
+                .betCardId(info.getBetCart().getId())
                 .build();
     }
 

@@ -1,7 +1,7 @@
 package my.betservice.domain.user;
 
 import lombok.*;
-import my.betservice.domain.bet.BetCard;
+import my.betservice.domain.bet.BetCart;
 import my.betservice.registration.domain.AppUser;
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -24,10 +24,10 @@ public class Customer {
     private PersonalDetails personalDetails;
     private BigDecimal moneyOnAccount;
     @OneToMany(
-            targetEntity = BetCard.class,
+            targetEntity = BetCart.class,
             cascade = CascadeType.ALL,
             mappedBy = "customer")
-    private List<BetCard> betCards = new ArrayList<>();
+    private List<BetCart> betCarts = new ArrayList<>();
     @OneToOne(mappedBy = "customer")
     private AppUser appUser;
 

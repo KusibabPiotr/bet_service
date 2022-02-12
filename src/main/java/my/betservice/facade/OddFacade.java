@@ -12,9 +12,8 @@ import org.springframework.stereotype.Service;
 public class OddFacade {
     private final FootballClient footballClient;
 
-    public OddInfoDtoOut getOddInfoByFixtureAndBetId(final Integer fixtureId,
-                                                     final Integer betId)
+    public OddInfoDtoOut getOddInfoByFixture(final Integer fixtureId)
             throws ClientFetchException {
-        return OddInfoMapper.mapToOutDto(footballClient.getOddInfoByFixtureAndBetId(fixtureId, betId));
+        return OddInfoMapper.mapToOutDto(footballClient.getOddInfoByFixture(fixtureId));
     }
 }

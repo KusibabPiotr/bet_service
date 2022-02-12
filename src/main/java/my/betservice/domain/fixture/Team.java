@@ -1,9 +1,7 @@
 package my.betservice.domain.fixture;
 
 import lombok.*;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Objects;
 
 @AllArgsConstructor
@@ -20,7 +18,6 @@ public class Team {
     private Integer teamId;
     private String name;
     private String logo;
-    private Boolean winner;
 
     @Override
     public boolean equals(Object o) {

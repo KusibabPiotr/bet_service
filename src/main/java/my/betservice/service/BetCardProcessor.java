@@ -1,7 +1,7 @@
 package my.betservice.service;
 
 import lombok.RequiredArgsConstructor;
-import my.betservice.dto.bet.BetCardDto;
+import my.betservice.dto.bet.BetCartDto;
 import my.betservice.dto.bet.BetInfoDto;
 import my.betservice.exception.NotEnoughMoneyOnAccountException;
 import my.betservice.exception.UserNotFoundException;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class BetCardProcessor {
     private final PaymentProcessor paymentProcessor;
 
-    public BetCardDto processBetCard(final BetCardDto dto)
+    public BetCartDto processBetCard(final BetCartDto dto)
             throws NotEnoughMoneyOnAccountException, UserNotFoundException {
         BigDecimal cardToPayValue = BigDecimal.valueOf(countOddsValue(dto));
         if (!paymentProcessor.checkIfUserHasEnoughMoney(dto.getBetCost()))
@@ -41,7 +41,7 @@ public class BetCardProcessor {
         return betCost.multiply(oddsValue).multiply(BigDecimal.valueOf(0.8));
     }
 
-    private double countOddsValue(final BetCardDto dto) {
+    private double countOddsValue(final BetCartDto dto) {
         return dto.getBetList()
                         .stream()
                         .mapToDouble(e -> Double.parseDouble(e.getBetValue().getValue()))

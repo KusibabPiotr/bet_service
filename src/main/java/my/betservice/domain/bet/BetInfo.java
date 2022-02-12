@@ -1,7 +1,6 @@
 package my.betservice.domain.bet;
 
 import lombok.*;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -22,8 +21,7 @@ public class BetInfo {
     private String odd;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "BET_CARD_ID")
-    private BetCard betCard;
-    private Long userId;
+    private BetCart betCart;
 
     @Override
     public boolean equals(Object o) {

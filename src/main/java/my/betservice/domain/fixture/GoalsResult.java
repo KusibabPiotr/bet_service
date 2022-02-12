@@ -1,7 +1,6 @@
 package my.betservice.domain.fixture;
 
 import lombok.*;
-
 import javax.persistence.*;
 
 @AllArgsConstructor

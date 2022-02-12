@@ -10,7 +10,6 @@ public class TeamMapper {
                 .teamId(dto.getTeamId())
                 .name(dto.getName())
                 .logo(dto.getLogo())
-                .winner(dto.getWinner())
                 .build();
     }
 
@@ -19,7 +18,6 @@ public class TeamMapper {
                 .teamId(team.getTeamId())
                 .name(team.getName())
                 .logo(team.getLogo())
-                .winner(team.getWinner())
                 .build();
     }
 }

@@ -31,11 +31,6 @@ public class AppUser implements UserDetails {
     private Customer customer;
     private Boolean enabled;
 
-    public AppUser(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
     public String getUsername() {
         return username;
     }
