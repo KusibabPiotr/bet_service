@@ -11,14 +11,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class AppUserService implements UserDetailsService {
-
-    private final static String USER_NOT_FOUND = "User with email %s not found";
     private final AppUserRepository appUserRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ConfirmationTokenService confirmationTokenService;
@@ -28,13 +25,13 @@ public class AppUserService implements UserDetailsService {
             throws UsernameNotFoundException {
         return appUserRepository.findByUsername(email)
                 .orElseThrow(
-                        () -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
+                        () -> new UsernameNotFoundException("There is no user with given email in database!"));
     }
 
     @Transactional
     public void enableAppUser(final String email) {
         appUserRepository.findByUsername(email)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)))
+                .orElseThrow(() -> new UsernameNotFoundException("There is no user with given email in database!"))
         .setEnabled(true);
     }
 

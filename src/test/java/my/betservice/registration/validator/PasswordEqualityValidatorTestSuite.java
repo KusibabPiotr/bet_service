@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
 @SpringBootTest
-class PasswordEqualityValidatorTest {
+class PasswordEqualityValidatorTestSuite {
     @Autowired
     private PasswordEqualityValidator passwordEqualityValidator;
 
