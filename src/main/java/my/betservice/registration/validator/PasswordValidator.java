@@ -7,6 +7,6 @@ import java.util.function.BiPredicate;
 public class PasswordValidator implements BiPredicate<String, String> {
     @Override
     public boolean test(String password, String repeatedPassword) {
-        return password.equals(repeatedPassword);
+        return password != null && password.length() > 5 && !password.isBlank();
     }
 }

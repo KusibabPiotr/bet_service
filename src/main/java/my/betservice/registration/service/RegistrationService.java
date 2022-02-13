@@ -32,6 +32,9 @@ public class RegistrationService {
             throw new EmailNotValidException();
         }
         if (!passwordValidator.test(request.getPassword(), request.getRepeatPassword())) {
+            throw new IllegalPasswordFormatException();
+        }
+        if (!request.getPassword().equals(request.getRepeatPassword())) {
             throw new PasswordNotMatchException();
         }
 

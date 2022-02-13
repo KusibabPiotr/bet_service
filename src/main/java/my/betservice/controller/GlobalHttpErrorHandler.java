@@ -74,4 +74,14 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<String> handleTokenNotFoundException(TokenNotFoundException e) {
         return new ResponseEntity<>("Invalid token! Regester again!", HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler({InvalidCredentialsException.class})
+    public ResponseEntity<String> handleInvalidCredentialsException(InvalidCredentialsException e) {
+        return new ResponseEntity<>("Authentication Failed", HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler({IllegalPasswordFormatException.class})
+    public ResponseEntity<String> handleIllegalPasswordFormatException(IllegalPasswordFormatException e) {
+        return new ResponseEntity<>("Your password should contains at least 6 signs!", HttpStatus.BAD_REQUEST);
+    }
 }

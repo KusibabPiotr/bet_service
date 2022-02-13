@@ -16,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 
@@ -27,6 +28,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private final AppUserService appUserService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final AuthenticationSuccessHandler successHandler;
+    private final AuthenticationFailureHandler failureHandler;
     private final JwtAuthorizationFilter authorizationFilter;
 
     @Override
@@ -60,6 +62,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     public JwtAuthenticationFilter authenticationFilter() throws Exception{
         var filter = new JwtAuthenticationFilter(getObjectMapper());
         filter.setAuthenticationSuccessHandler(successHandler);
+        filter.setAuthenticationFailureHandler(failureHandler);
         filter.setAuthenticationManager(authenticationManager());
         return filter;
     }
