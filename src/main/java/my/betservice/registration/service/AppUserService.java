@@ -24,8 +24,7 @@ public class AppUserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
         return appUserRepository.findByUsername(email)
-                .orElseThrow(
-                        () -> new UsernameNotFoundException("There is no user with given email in database!"));
+                .orElseThrow(() -> new UsernameNotFoundException("There is no user with given email in database!"));
     }
 
     @Transactional
@@ -53,8 +52,7 @@ public class AppUserService implements UserDetailsService {
     }
 
     public AppUser getCurrentLoggedInAppUser() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        String username = principal.toString();
+        String username = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
         return  (AppUser)loadUserByUsername(username);
     }
 
