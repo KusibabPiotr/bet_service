@@ -8,7 +8,8 @@ import my.betservice.registration.domain.ConfirmationToken;
 import my.betservice.registration.dto.RegistrationRequestDto;
 import my.betservice.registration.mapper.AppUserMapper;
 import my.betservice.registration.validator.EmailValidator;
-import my.betservice.registration.validator.PasswordValidator;
+import my.betservice.registration.validator.PasswordEqualityValidator;
+import my.betservice.registration.validator.PasswordFormatValidator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -18,7 +19,8 @@ import java.time.LocalDateTime;
 @Service
 public class RegistrationService {
     private final EmailValidator emailValidator;
-    private final PasswordValidator passwordValidator;
+    private final PasswordEqualityValidator passwordEqualityValidator;
+    private final PasswordFormatValidator passwordFormatValidator;
     private final AppUserService appUserService;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailService emailService;
@@ -31,10 +33,10 @@ public class RegistrationService {
         if (!emailValidator.test(request.getEmail())) {
             throw new EmailNotValidException();
         }
-        if (!passwordValidator.test(request.getPassword(), request.getRepeatPassword())) {
+        if (!passwordFormatValidator.test(request.getPassword())) {
             throw new IllegalPasswordFormatException();
         }
-        if (!request.getPassword().equals(request.getRepeatPassword())) {
+        if (passwordEqualityValidator.test(request.getPassword(), request.getRepeatPassword())) {
             throw new PasswordNotMatchException();
         }
 
