@@ -43,7 +43,7 @@ public class BetCartService {
         currentCustomer.getBetCarts().add(newBetCart);
     }
 
-    public BetCart createNewBetCart(final Customer customer) {
+    private BetCart createNewBetCart(final Customer customer) {
         return BetCart.builder()
                 .customer(customer)
                 .finished(false)
