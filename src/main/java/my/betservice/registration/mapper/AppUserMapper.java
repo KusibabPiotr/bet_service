@@ -5,7 +5,6 @@ import my.betservice.registration.domain.AppUser;
 import my.betservice.registration.dto.RegistrationRequestDto;
 
 public class AppUserMapper {
-
     public static AppUser mapToAppUser(final RegistrationRequestDto dto) {
         return AppUser.builder()
                 .username(dto.getEmail())
