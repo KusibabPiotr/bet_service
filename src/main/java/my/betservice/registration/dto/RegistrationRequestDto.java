@@ -2,6 +2,7 @@ package my.betservice.registration.dto;
 
 import lombok.*;
 
+@Builder
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
