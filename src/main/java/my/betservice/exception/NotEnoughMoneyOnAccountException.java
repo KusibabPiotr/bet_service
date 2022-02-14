@@ -1,4 +1,4 @@
 package my.betservice.exception;
 
-public class NotEnoughMoneyOnAccountException extends Exception{
+public class NotEnoughMoneyOnAccountException extends RuntimeException {
 }
