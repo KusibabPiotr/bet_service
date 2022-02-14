@@ -3,7 +3,6 @@ package my.betservice.service;
 import lombok.RequiredArgsConstructor;
 import my.betservice.domain.bet.BetCart;
 import my.betservice.domain.user.Customer;
-import my.betservice.dto.bet.BetCartDto;
 import my.betservice.exception.BetCardNotFoundException;
 import my.betservice.repository.BetCartRepository;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,7 @@ public class BetCartService {
     }
 
     @Transactional
-    public BetCart confirmBetCardTransaction(final BetCartDto processed) {
+    public BetCart confirmBetCardTransaction(final BetCart processed) {
         addNewBetCartToCustomerCarts();
         BetCart betCart = getBetCardById(processed.getId());
         betCart.setOddsValue(processed.getOddsValue());

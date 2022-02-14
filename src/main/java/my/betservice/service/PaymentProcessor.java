@@ -2,7 +2,6 @@ package my.betservice.service;
 
 import lombok.RequiredArgsConstructor;
 import my.betservice.domain.user.Customer;
-import my.betservice.exception.UserNotFoundException;
 import my.betservice.registration.domain.AppUser;
 import my.betservice.registration.service.AppUserService;
 import my.betservice.repository.CustomerRepository;
@@ -25,11 +24,5 @@ public class PaymentProcessor {
             result = true;
         }
         return result;
-    }
-
-    private Customer fetchUser(final Long userId)
-            throws UserNotFoundException {
-        return customerRepository.findById(userId)
-                .orElseThrow(UserNotFoundException::new);
     }
 }

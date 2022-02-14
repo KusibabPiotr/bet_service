@@ -18,6 +18,8 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 @Service
 public class RegistrationService {
+    public static final String EMAIL_WITH_LINK_JUST_SEND = "Email with confirmation request just send";
+    public static final String EMAIL_SUCCESSFULLY_CONFIRMED = "Email successfully confirmed!";
     private final EmailValidator emailValidator;
     private final PasswordEqualityValidator passwordEqualityValidator;
     private final PasswordFormatValidator passwordFormatValidator;
@@ -45,7 +47,7 @@ public class RegistrationService {
                 request.getEmail(),
                 EmailBuilder.buildEmail("Stranger", link));
 
-        return "Email with confirmation request just send";
+        return EMAIL_WITH_LINK_JUST_SEND;
     }
 
     @Transactional
@@ -67,6 +69,6 @@ public class RegistrationService {
         confirmationTokenService.setConfirmedAt(token);
         appUserService.enableAppUser(confirmationToken.getAppUser().getUsername());
 
-        return "Email successfully confirmed!";
+        return EMAIL_SUCCESSFULLY_CONFIRMED;
     }
 }

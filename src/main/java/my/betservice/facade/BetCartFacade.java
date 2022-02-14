@@ -1,6 +1,7 @@
 package my.betservice.facade;
 
 import lombok.RequiredArgsConstructor;
+import my.betservice.domain.bet.BetCart;
 import my.betservice.dto.bet.BetCartDto;
 import my.betservice.exception.NotEnoughMoneyOnAccountException;
 import my.betservice.exception.UserNotFoundException;
@@ -32,7 +33,7 @@ public class BetCartFacade {
         BetCartDto betCartDto = BetCardMapper.mapToBetCardDto(betCartService
                 .getBetCardById(id));
         betCartDto.setBetCost(betCost);
-        BetCartDto processed = betCardProcessor.processBetCard(betCartDto);
+        BetCart processed = BetCardMapper.mapToBetCard(betCardProcessor.processBetCard(betCartDto));
         return BetCardMapper.mapToBetCardDto(betCartService.confirmBetCardTransaction(processed));
     }
 }
