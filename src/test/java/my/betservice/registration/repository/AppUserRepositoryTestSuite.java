@@ -5,8 +5,6 @@ import my.betservice.registration.domain.AppUser;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import javax.transaction.Transactional;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -16,7 +14,6 @@ class AppUserRepositoryTestSuite {
     private AppUserRepository appUserRepository;
 
     @Test
-    @Transactional
     public void shouldReturnAdminUsernameAlreadySavedInDb() {
         //given
         String email = "marian@kowal.com";

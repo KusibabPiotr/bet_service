@@ -1,14 +1,10 @@
 package my.betservice.registration.validator;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-@SpringBootTest
 class EmailValidatorTestSuite {
-    @Autowired
-    private EmailValidator emailValidator;
+    private EmailValidator emailValidator = new EmailValidator();
 
     @Test
     public void shouldReturnTrueIfEmailHasAtSign() {

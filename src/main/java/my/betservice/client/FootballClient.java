@@ -26,8 +26,7 @@ public class FootballClient {
     private static final String HOST_NAME = "x-rapidapi-host";
     private static final String KEY_NAME = "x-rapidapi-key";
     private static final Integer WIN_MATCH_BET = 1;
-    @Value("${bookmaker_bet365}")
-    private Integer bookmakerBet365;
+    private static final Integer BOOKMAKER_BET_365 = 7;
     @Value("${football.api.key}")
     private String apiKeyValue;
     @Value("${football.api.endpoint}")
@@ -107,7 +106,7 @@ public class FootballClient {
         HttpEntity request = setHeaders();
 
         URI uri = UriComponentsBuilder.fromHttpUrl(apiEndpointValue + "odds")
-                .queryParam("bookmaker", bookmakerBet365)
+                .queryParam("bookmaker", BOOKMAKER_BET_365)
                 .queryParam("fixture", fixtureId)
                 .queryParam("bet", WIN_MATCH_BET)
                 .build().encode().toUri();

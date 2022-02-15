@@ -6,7 +6,6 @@ import my.betservice.registration.domain.ConfirmationToken;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -19,7 +18,6 @@ class ConfirmationTokenRepositoryTestSuite {
     private AppUserRepository appUserRepository;
 
     @Test
-    @Transactional
     public void findConfirmationTokenByToken() {
         //given
         String email = "marian@kowal.com";

@@ -44,9 +44,9 @@ public class BetService {
 
     private LocalDateTime convertToLocalDateTime(final String zonedTime) {
         ZonedDateTime zonedDateTime = ZonedDateTime.parse(zonedTime);
-        ZoneId londonZone = ZoneId.of("Europe/Zurich");
-        ZonedDateTime swissZoned = zonedDateTime.withZoneSameInstant(londonZone);
-        return swissZoned.toLocalDateTime();
+        ZoneId londonZone = ZoneId.of("Europe/London");
+        ZonedDateTime englishZoned = zonedDateTime.withZoneSameInstant(londonZone);
+        return englishZoned.toLocalDateTime();
     }
 
 }

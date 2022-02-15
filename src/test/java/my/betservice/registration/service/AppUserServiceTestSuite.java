@@ -80,11 +80,10 @@ class AppUserServiceTestSuite {
         public void shouldThrowException() {
             //given
             String email = "mysz@op.pl";
-            when(appUserRepository.findByUsername(email)).thenThrow(new UsernameNotFoundException("There is no user with given email in database!"));
+
             //when
             assertThatThrownBy(() -> appUserService.loadUserByUsername(email))
-                    .isInstanceOf(UsernameNotFoundException.class)
-                    .hasMessage("There is no user with given email in database!");
+                    .isInstanceOf(UsernameNotFoundException.class);
         }
     }
 

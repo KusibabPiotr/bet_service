@@ -1,14 +1,10 @@
 package my.betservice.registration.validator;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-@SpringBootTest
 class PasswordEqualityValidatorTestSuite {
-    @Autowired
-    private PasswordEqualityValidator passwordEqualityValidator;
+    private PasswordEqualityValidator passwordEqualityValidator = new PasswordEqualityValidator();
 
     @Test
     public void shouldReturnTrueIfPassAndRepeatedPassAreEqual() {

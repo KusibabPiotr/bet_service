@@ -1,14 +1,11 @@
 package my.betservice.registration.validator;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-@SpringBootTest
+
 class PasswordFormatValidatorTestSuite {
-    @Autowired
-    private PasswordFormatValidator passwordFormatValidator;
+    private PasswordFormatValidator passwordFormatValidator = new PasswordFormatValidator();
 
     @Test
     public void shouldReturnFalseIfPasswordIsNull(){
