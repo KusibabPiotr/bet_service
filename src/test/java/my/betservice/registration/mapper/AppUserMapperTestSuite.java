@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class AppUserMapperTestSuite {
     @Test
-    public void shouldMapRegRequestDtoToAppUser() {
+    void shouldMapRegRequestDtoToAppUser() {
         //given
         var registrationRequestDto =
                 RegistrationRequestDto.builder()

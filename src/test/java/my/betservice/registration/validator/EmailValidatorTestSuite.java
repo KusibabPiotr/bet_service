@@ -7,7 +7,7 @@ class EmailValidatorTestSuite {
     private EmailValidator emailValidator = new EmailValidator();
 
     @Test
-    public void shouldReturnTrueIfEmailHasAtSign() {
+    void shouldReturnTrueIfEmailHasAtSign() {
         //given
         String email = "adam@gmail.com";
         //when
@@ -17,7 +17,7 @@ class EmailValidatorTestSuite {
     }
 
     @Test
-    public void shouldReturnFalseIfEmailHasNoAtSign() {
+    void shouldReturnFalseIfEmailHasNoAtSign() {
         //given
         String email = "adam#gmail.com";
         //when

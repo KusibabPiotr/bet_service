@@ -7,7 +7,7 @@ class PasswordEqualityValidatorTestSuite {
     private PasswordEqualityValidator passwordEqualityValidator = new PasswordEqualityValidator();
 
     @Test
-    public void shouldReturnTrueIfPassAndRepeatedPassAreEqual() {
+    void shouldReturnTrueIfPassAndRepeatedPassAreEqual() {
         //given
         String pass = "Adamek";
         String repeatedPass = "Adamek";
@@ -18,7 +18,7 @@ class PasswordEqualityValidatorTestSuite {
     }
 
     @Test
-    public void shouldReturnFalseIfPassAndRepeatedPassAreNotEqual() {
+    void shouldReturnFalseIfPassAndRepeatedPassAreNotEqual() {
         //given
         String pass = "Adamek";
         String repeatedPass = "Adamek2";

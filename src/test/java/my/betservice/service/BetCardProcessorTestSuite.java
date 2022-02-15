@@ -24,7 +24,7 @@ class BetCardProcessorTestSuite {
     private PaymentProcessor paymentProcessor;
 
     @Test
-    public void shouldReturnBetCartDto() throws NotEnoughMoneyOnAccountException {
+    void shouldReturnBetCartDto() throws NotEnoughMoneyOnAccountException {
         //given
         BetInfoDto bet = BetInfoDto.builder()
                 .betValue(new BetValueDtoInOut("5", "home"))

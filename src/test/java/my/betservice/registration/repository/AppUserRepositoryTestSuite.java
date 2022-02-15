@@ -14,7 +14,7 @@ class AppUserRepositoryTestSuite {
     private AppUserRepository appUserRepository;
 
     @Test
-    public void shouldReturnAdminUsernameAlreadySavedInDb() {
+    void shouldReturnAdminUsernameAlreadySavedInDb() {
         //given
         String email = "marian@kowal.com";
         AppUser user = AppUser.builder()

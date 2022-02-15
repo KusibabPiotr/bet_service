@@ -18,7 +18,7 @@ class ConfirmationTokenRepositoryTestSuite {
     private AppUserRepository appUserRepository;
 
     @Test
-    public void findConfirmationTokenByToken() {
+    void findConfirmationTokenByToken() {
         //given
         String email = "marian@kowal.com";
         AppUser appUser = AppUser.builder()

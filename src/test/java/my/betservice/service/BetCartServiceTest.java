@@ -32,7 +32,7 @@ class BetCartServiceTest {
     @Nested
     class GetAllUserBetCarts {
         @Test
-        public void returnEmptyList() {
+        void returnEmptyList() {
             //given
             Customer customer = Customer.builder()
                     .appUser(new AppUser())
@@ -47,7 +47,7 @@ class BetCartServiceTest {
         }
 
         @Test
-        public void returnTwoElementList() {
+        void returnTwoElementList() {
             //given
             Customer customer = Customer.builder()
                     .appUser(new AppUser())
@@ -73,7 +73,7 @@ class BetCartServiceTest {
     @Nested
     class GetBetCartById {
         @Test
-        public void shouldThrowException() {
+        void shouldThrowException() {
             //given
             long id = 1L;
             when(betCartRepository.findById(id)).thenThrow(new BetCardNotFoundException());
@@ -82,7 +82,7 @@ class BetCartServiceTest {
                     .isInstanceOf(BetCardNotFoundException.class);
         }
         @Test
-        public void shouldReturnBetCart() {
+        void shouldReturnBetCart() {
             //given
             BetCart cart = BetCart.builder()
                     .id(1L)
@@ -102,7 +102,7 @@ class BetCartServiceTest {
     @Nested
     class ConfirmBetCardTransaction {
         @Test
-        public void shouldReturnSavedCart() {
+        void shouldReturnSavedCart() {
             //given
             BetCart betCart = BetCart.builder()
                     .id(1L)

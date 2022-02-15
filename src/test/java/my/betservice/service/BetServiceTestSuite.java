@@ -40,7 +40,7 @@ class BetServiceTestSuite {
     @Nested
     class TestDeleteBetFromList {
         @Test
-        public void shouldDeleteBetInfoById() {
+        void shouldDeleteBetInfoById() {
             //when
             betService.deleteBetFromBetList(1L);
             //then
@@ -48,7 +48,7 @@ class BetServiceTestSuite {
         }
 
         @Test
-        public void shouldThrowIllegalArgExceptionWithIdNull() {
+        void shouldThrowIllegalArgExceptionWithIdNull() {
             //given
             doThrow(new IllegalArgumentException()).when(betInfoRepository).deleteById(null);
             //when
@@ -59,7 +59,7 @@ class BetServiceTestSuite {
     @Nested
     class TestAddBetToBetListOfThisUser {
         @Test
-        public void shouldAddBetToUserCartAndReturnAddedBet() {
+        void shouldAddBetToUserCartAndReturnAddedBet() {
             //given
             BetInfo bet = BetInfo.builder()
                     .date(LocalDateTime.now())
@@ -88,7 +88,7 @@ class BetServiceTestSuite {
         }
 
         @Test
-        public void shouldThrowFixtureNotFoundException() {
+        void shouldThrowFixtureNotFoundException() {
             //given
             BetInfo bet = BetInfo.builder()
                     .date(LocalDateTime.now())
@@ -110,7 +110,7 @@ class BetServiceTestSuite {
         }
 
         @Test
-        public void shouldThrowDateTimeParseException() {
+        void shouldThrowDateTimeParseException() {
             //given
             BetInfo bet = BetInfo.builder()
                     .date(LocalDateTime.now())

@@ -33,7 +33,7 @@ class AppUserServiceTestSuite {
     @Nested
     class TestLoadUserByUsername {
         @Test
-        public void shouldReturnAppUserWithCorrectUsername() {
+        void shouldReturnAppUserWithCorrectUsername() {
             //given
             String email = "mysz@op.pl";
             AppUser appUser = AppUser.builder()
@@ -47,7 +47,7 @@ class AppUserServiceTestSuite {
         }
 
         @Test
-        public void shouldThrowException() {
+        void shouldThrowException() {
             //given
             String email = "mysz@op.pl";
             when(appUserRepository.findByUsername(email)).thenThrow(new UsernameNotFoundException("There is no user with given email in database!"));
@@ -61,7 +61,7 @@ class AppUserServiceTestSuite {
     @Nested
     class TestEnableAppUser {
         @Test
-        public void shouldEnableAppUser() {
+        void shouldEnableAppUser() {
             //given
             String email = "mysz@op.pl";
             AppUser appUser = AppUser.builder()
@@ -77,7 +77,7 @@ class AppUserServiceTestSuite {
         }
 
         @Test
-        public void shouldThrowException() {
+        void shouldThrowException() {
             //given
             String email = "mysz@op.pl";
 
@@ -90,7 +90,7 @@ class AppUserServiceTestSuite {
     @Nested
     class TestSignUpUser {
         @Test
-        public void shouldSignUpUser() {
+        void shouldSignUpUser() {
             //given
             String email = "mysz@op.pl";
             String password = "password";
@@ -116,7 +116,7 @@ class AppUserServiceTestSuite {
         }
 
         @Test
-        public void shouldThrowException() {
+        void shouldThrowException() {
             //given
             String email = "mysz@op.pl";
             String password = "password";

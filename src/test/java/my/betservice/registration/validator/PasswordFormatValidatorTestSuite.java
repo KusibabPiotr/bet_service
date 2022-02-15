@@ -3,12 +3,11 @@ package my.betservice.registration.validator;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
-
 class PasswordFormatValidatorTestSuite {
     private PasswordFormatValidator passwordFormatValidator = new PasswordFormatValidator();
 
     @Test
-    public void shouldReturnFalseIfPasswordIsNull(){
+    void shouldReturnFalseIfPasswordIsNull(){
         //given
         String password = null;
         //when
@@ -18,7 +17,7 @@ class PasswordFormatValidatorTestSuite {
     }
 
     @Test
-    public void shouldReturnFalseIfPasswordIsBlank(){
+    void shouldReturnFalseIfPasswordIsBlank(){
         //given
         String password = "";
         //when
@@ -28,7 +27,7 @@ class PasswordFormatValidatorTestSuite {
     }
 
     @Test
-    public void shouldReturnFalseIfPasswordHasLengthUnder6(){
+    void shouldReturnFalseIfPasswordHasLengthUnder6(){
         //given
         String password = "Papap";
         //when
@@ -38,7 +37,7 @@ class PasswordFormatValidatorTestSuite {
     }
 
     @Test
-    public void shouldReturnTrueIfPasswordHas6OrMoreSigns(){
+    void shouldReturnTrueIfPasswordHas6OrMoreSigns(){
         //given
         String password = "Papapa";
         //when
