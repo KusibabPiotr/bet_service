@@ -35,7 +35,8 @@ public class CustomerService {
     @Transactional
     public Customer getCurrentLoggedInCustomer() {
         AppUser appUser = appUserService.getCurrentLoggedInAppUser();
-        return customerRepository.findByAppUser(appUser);
+        return customerRepository.findByAppUser(appUser)
+                .orElseThrow(CustomerNotFoundException::new);
     }
 
     public BetCart createNewBetCart(final Customer customer) {
