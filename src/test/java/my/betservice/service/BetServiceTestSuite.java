@@ -52,7 +52,7 @@ class BetServiceTestSuite {
             //given
             doThrow(new IllegalArgumentException()).when(betInfoRepository).deleteById(null);
             //when
-            assertThatThrownBy(()->betService.deleteBetFromBetList(null))
+            assertThatThrownBy(() -> betService.deleteBetFromBetList(null))
                     .isInstanceOf(IllegalArgumentException.class);
         }
     }

@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class BetCartServiceTest {
@@ -73,7 +73,7 @@ class BetCartServiceTest {
     @Nested
     class GetBetCartById {
         @Test
-        void shouldThrowException() {
+        void shouldThrowBetCardNotFoundException () {
             //given
             long id = 1L;
             when(betCartRepository.findById(id)).thenThrow(new BetCardNotFoundException());
@@ -81,12 +81,23 @@ class BetCartServiceTest {
             assertThatThrownBy(() -> betCartService.getBetCardById(id))
                     .isInstanceOf(BetCardNotFoundException.class);
         }
+
         @Test
-        void shouldReturnBetCart() {
+        void shouldThrowIllegalArgumentException () {
+            //given
+            Long id = null;
+            when(betCartRepository.findById(id)).thenThrow(new IllegalArgumentException());
+            //when & then
+            assertThatThrownBy(() -> betCartService.getBetCardById(id))
+                    .isInstanceOf(IllegalArgumentException.class);
+        }
+
+        @Test
+        void shouldReturnSavedBetCart() {
             //given
             BetCart cart = BetCart.builder()
                     .id(1L)
-                    .finished(false)
+                    .finished(true)
                     .toWin(BigDecimal.TEN)
                     .build();
             when(betCartRepository.findById(1L)).thenReturn(Optional.ofNullable(cart));
@@ -94,7 +105,7 @@ class BetCartServiceTest {
             BetCart betCart = betCartService.getBetCardById(1L);
             //then
             assertThat(betCart.getId()).isEqualTo(1L);
-            assertThat(betCart.isFinished()).isFalse();
+            assertThat(betCart.isFinished()).isTrue();
             assertThat(betCart.getToWin()).isEqualTo(BigDecimal.TEN);
         }
     }
@@ -118,6 +129,7 @@ class BetCartServiceTest {
                     .build();
             when(betCartRepository.findById(1L)).thenReturn(Optional.ofNullable(betCart));
             when(customerService.getCurrentLoggedInCustomer()).thenReturn(customer);
+            when(betCartRepository.save(betCart)).thenReturn(betCart);
             //when
             BetCart returned = betCartService.confirmBetCardTransaction(betCart);
             //then
@@ -125,6 +137,14 @@ class BetCartServiceTest {
             assertThat(returned.getToWin()).isEqualTo(BigDecimal.TEN);
             assertThat(returned.isFinished()).isTrue();
             assertThat(returned.getBetList().size()).isEqualTo(1);
+            verify(betCartRepository,times(1)).save(betCart);
+        }
+
+        @Test
+        void shouldThrowNullPointerException() {
+            //when & then
+            assertThatThrownBy(() -> betCartService.confirmBetCardTransaction(null))
+                    .isInstanceOf(NullPointerException.class);
         }
     }
 }

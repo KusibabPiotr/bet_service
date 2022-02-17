@@ -4,15 +4,12 @@ import com.auth0.jwt.JWT;
 import lombok.RequiredArgsConstructor;
 import my.betservice.jwt.settings.JwtAlgorithm;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.stream.Collectors;
@@ -26,7 +23,7 @@ public class AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccess
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                        Authentication authentication) throws IOException, ServletException {
+                                        Authentication authentication){
         UserDetails principal = (UserDetails) authentication.getPrincipal();
 
         String token = JWT.create()

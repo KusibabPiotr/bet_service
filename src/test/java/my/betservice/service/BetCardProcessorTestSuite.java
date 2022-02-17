@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -24,7 +25,7 @@ class BetCardProcessorTestSuite {
     private PaymentProcessor paymentProcessor;
 
     @Test
-    void shouldReturnBetCartDto() throws NotEnoughMoneyOnAccountException {
+    void shouldReturnBetCartDto() {
         //given
         BetInfoDto bet = BetInfoDto.builder()
                 .betValue(new BetValueDtoInOut("5", "home"))
@@ -45,5 +46,47 @@ class BetCardProcessorTestSuite {
                 .isEqualTo(BigDecimal.valueOf(5.0)
                         .multiply(BigDecimal.TEN)
                         .multiply(BigDecimal.valueOf(0.8)));
+    }
+
+    @Test
+    void shouldThrowNotEnoughMoneyOnAccountException() {
+        //given
+        BetInfoDto bet = BetInfoDto.builder()
+                .betValue(new BetValueDtoInOut("5", "home"))
+                .fixtureTime(LocalDateTime.now().plusMinutes(15))
+                .build();
+        BetCartDto betCart = BetCartDto.builder()
+                .betCost(BigDecimal.TEN)
+                .betList(List.of(bet))
+                .build();
+        when(paymentProcessor.checkIfUserHasEnoughMoney(any())).thenReturn(false);
+        //when & then
+        assertThatThrownBy(() -> betCartProcessor.processBetCard(betCart))
+                .isInstanceOf(NotEnoughMoneyOnAccountException.class);
+    }
+
+    @Test
+    void shouldThrowNullPointerException () {
+        //given
+        BetCartDto betCart = null;
+        //when & then
+        assertThatThrownBy(() -> betCartProcessor.processBetCard(betCart))
+                .isInstanceOf(NullPointerException.class);
+    }
+
+    @Test
+    void shouldThrowNumberFormatException () {
+        //given
+        BetInfoDto bet = BetInfoDto.builder()
+                .betValue(new BetValueDtoInOut("wrong", "home"))
+                .fixtureTime(LocalDateTime.now().plusMinutes(15))
+                .build();
+        BetCartDto betCart = BetCartDto.builder()
+                .betCost(BigDecimal.TEN)
+                .betList(List.of(bet))
+                .build();
+        //when & then
+        assertThatThrownBy(() -> betCartProcessor.processBetCard(betCart))
+                .isInstanceOf(NumberFormatException.class);
     }
 }

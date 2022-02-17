@@ -20,7 +20,8 @@ public class BetCartService {
     }
 
     public BetCart getBetCardById(final Long id) {
-        return betCartRepository.findById(id).orElseThrow(BetCardNotFoundException::new);
+        return betCartRepository.findById(id)
+                .orElseThrow(BetCardNotFoundException::new);
     }
 
     @Transactional
@@ -33,7 +34,7 @@ public class BetCartService {
         betCart.setBetConfirmedTime(processed.getBetConfirmedTime());
         betCart.setLastMatchToPlay(processed.getLastMatchToPlay());
         betCart.setFinished(processed.isFinished());
-        return betCart;
+        return betCartRepository.save(betCart);
     }
 
     private void addNewBetCartToCustomerCarts() {
