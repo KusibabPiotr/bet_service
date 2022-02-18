@@ -33,6 +33,5 @@ Project is created with:
 * testing in progress
 * frontend React
 
-
 ## Setup
 NOT READY TO USE
