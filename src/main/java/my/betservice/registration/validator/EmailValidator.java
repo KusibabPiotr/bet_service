@@ -1,15 +1,19 @@
 package my.betservice.registration.validator;
 
+import my.betservice.exception.EmailNotValidException;
 import org.springframework.stereotype.Service;
-import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 @Service
-public class EmailValidator implements Predicate<String> {
-    @Override
-    public boolean test(final String email) {
+public class EmailValidator {
+    public void validate(final String email) throws EmailNotValidException {
+        if (!test(email)) {
+            throw new EmailNotValidException();
+        }
+    }
+    public boolean test(String email) {
         String regexPattern = "^(.+)@(\\S+)$";
-        return Pattern.compile(regexPattern)
+        return Pattern.compile("^(.+)@(\\S+)$")
                 .matcher(email)
                 .matches();
     }
