@@ -1,7 +1,6 @@
 package my.betservice.domain.user;
 
 import lombok.*;
-
 import javax.persistence.*;
 
 @AllArgsConstructor

@@ -21,7 +21,7 @@ public class RegistrationController {
 
     @GetMapping("/confirm")
     public String confirmEmail(@RequestParam String token)
-            throws TokenNotFoundException, EmaiAlreadyConfirmedException,
+            throws TokenNotFoundException, EmailAlreadyConfirmedException,
             TokenExpiredException {
         return registrationService.confirmToken(token);
     }

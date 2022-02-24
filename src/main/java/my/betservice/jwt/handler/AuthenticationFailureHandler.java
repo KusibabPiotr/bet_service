@@ -12,6 +12,6 @@ public class AuthenticationFailureHandler extends SimpleUrlAuthenticationFailure
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
                                         AuthenticationException exception) {
-        throw new InvalidCredentialsException();
+        throw new InvalidCredentialsException(exception.getMessage());
     }
 }

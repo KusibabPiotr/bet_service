@@ -1,6 +1,6 @@
 package my.betservice.registration.validator;
 
-import my.betservice.exception.EmaiAlreadyConfirmedException;
+import my.betservice.exception.EmailAlreadyConfirmedException;
 import my.betservice.exception.TokenExpiredException;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
@@ -14,9 +14,9 @@ public class TokenValidator {
         }
     }
     public void validateIfAlreadyConfirmed(final LocalDateTime confirmedAt)
-            throws EmaiAlreadyConfirmedException {
+            throws EmailAlreadyConfirmedException {
         if (confirmedAt != null) {
-            throw new EmaiAlreadyConfirmedException();
+            throw new EmailAlreadyConfirmedException();
         }
     }
 }

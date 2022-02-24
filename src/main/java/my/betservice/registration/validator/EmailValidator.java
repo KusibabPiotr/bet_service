@@ -13,7 +13,7 @@ public class EmailValidator {
     }
     public boolean test(String email) {
         String regexPattern = "^(.+)@(\\S+)$";
-        return Pattern.compile("^(.+)@(\\S+)$")
+        return Pattern.compile(regexPattern)
                 .matcher(email)
                 .matches();
     }

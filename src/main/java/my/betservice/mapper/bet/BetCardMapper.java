@@ -2,7 +2,6 @@ package my.betservice.mapper.bet;
 
 import my.betservice.domain.bet.BetCart;
 import my.betservice.dto.bet.BetCartDto;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

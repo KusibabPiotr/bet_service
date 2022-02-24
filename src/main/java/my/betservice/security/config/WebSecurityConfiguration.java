@@ -53,7 +53,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                     .addFilter(authenticationFilter())
-                    .addFilter(authenticationFilter())
                     .addFilterAfter(authorizationFilter,JwtAuthenticationFilter.class)
                 .exceptionHandling()
                     .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));

@@ -3,9 +3,7 @@ package my.betservice.mapper.league;
 import my.betservice.domain.league.LeagueInfo;
 import my.betservice.dto.league.LeagueInfoDtoIn;
 import my.betservice.dto.league.LeagueInfoDtoOut;
-
 import java.util.List;
-
 import static java.util.stream.Collectors.toList;
 
 public class LeagueInfoMapper {

@@ -18,7 +18,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.List;
 import static java.util.Collections.singletonList;
 
-
 @Configuration
 @EnableSwagger2
 @EnableScheduling

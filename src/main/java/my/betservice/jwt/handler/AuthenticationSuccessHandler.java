@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.stream.Collectors;
-
 import static my.betservice.jwt.settings.JwtConstant.*;
 
 @Component

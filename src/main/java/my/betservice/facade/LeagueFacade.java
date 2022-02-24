@@ -9,7 +9,6 @@ import my.betservice.exception.LeagueNotFoundException;
 import my.betservice.mapper.league.LeagueInfoMapper;
 import my.betservice.service.LeagueService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @RequiredArgsConstructor

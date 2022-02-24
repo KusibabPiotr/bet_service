@@ -14,7 +14,6 @@ import my.betservice.registration.validator.TokenValidator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
-import java.time.LocalDateTime;
 
 @RequiredArgsConstructor
 @Service
@@ -42,13 +41,12 @@ public class RegistrationService {
         emailService.send(
                 request.getEmail(),
                 EmailBuilder.buildEmail("Stranger", link));
-
         return EMAIL_WITH_LINK_JUST_SEND;
     }
 
     @Transactional
     public String confirmToken(final String token)
-            throws TokenNotFoundException, EmaiAlreadyConfirmedException,
+            throws TokenNotFoundException, EmailAlreadyConfirmedException,
             TokenExpiredException {
         ConfirmationToken confirmationToken = confirmationTokenService
                 .getToken(token)
