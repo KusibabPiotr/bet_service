@@ -32,6 +32,7 @@ Project is created with:
 * build results checking
 * testing in progress
 * frontend React
+* DEPLOY!!
 
 ## Setup
 NOT READY TO USE
