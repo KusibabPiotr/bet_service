@@ -9,11 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder
-@Getter
-@Setter
 @Entity
+@EqualsAndHashCode
+@Getter
+@NoArgsConstructor
+@Setter
 @Table(name = "CUSTOMERS")
 public class Customer {
     @Id
@@ -30,19 +31,4 @@ public class Customer {
     private List<BetCart> betCarts = new ArrayList<>();
     @OneToOne(mappedBy = "customer")
     private AppUser appUser;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Customer customer = (Customer) o;
-
-        return id != null ? id.equals(customer.id) : customer.id == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
-    }
 }

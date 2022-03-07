@@ -4,11 +4,12 @@ import lombok.*;
 import javax.persistence.*;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder
-@Getter
-@Setter
 @Entity
+@EqualsAndHashCode
+@Getter
+@NoArgsConstructor
+@Setter
 @Table(name = "GOALS_RESULTS")
 public class GoalsResult {
     @Id

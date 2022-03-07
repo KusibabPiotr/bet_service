@@ -10,13 +10,13 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 
+@AllArgsConstructor
 @Builder
 @Entity(name = "APP_USERS")
-@Getter
-@Setter
 @EqualsAndHashCode
-@AllArgsConstructor
+@Getter
 @NoArgsConstructor
+@Setter
 public class AppUser implements UserDetails {
 
     @Id

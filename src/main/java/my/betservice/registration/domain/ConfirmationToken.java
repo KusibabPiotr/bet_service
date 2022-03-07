@@ -4,12 +4,13 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@AllArgsConstructor
 @Builder
 @Entity
+@EqualsAndHashCode
 @Getter
-@Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@Setter
 public class ConfirmationToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

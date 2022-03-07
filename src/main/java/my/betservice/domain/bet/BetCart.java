@@ -9,11 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Builder
-@Getter
-@Setter
 @Entity
+@EqualsAndHashCode
+@Getter
+@NoArgsConstructor
+@Setter
 @Table(name = "BET_CARTS")
 public class BetCart {
     @Id
@@ -34,19 +35,4 @@ public class BetCart {
     @ManyToOne(fetch = FetchType.LAZY)
     private Customer customer;
     private Boolean finalWin;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        BetCart betCart = (BetCart) o;
-
-        return id != null ? id.equals(betCart.id) : betCart.id == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return id != null ? id.hashCode() : 0;
-    }
 }

@@ -15,7 +15,7 @@ public class LeagueFixturesUpdateScheduler {
     private final FixtureService fixtureService;
     private final FootballClient footballClient;
 
-    @Scheduled(cron = "0 0 22 * * *", zone = "CET")
+    @Scheduled(cron = "0 0 23 * * *", zone = "CET")
     public void updateFixturesStatuses() {
         List<FixtureInfo> fixtureInfos = FixtureInfoMapper.mapToFixtureInfoList(footballClient.updatePremierLeagueFixturesStatus());
         fixtureService.updateFixturesStatuses(fixtureInfos);
