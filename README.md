@@ -31,6 +31,7 @@ Project is created with:
 
 ## To-do
 * finish results checking feature
+* add pay-in option - for a now you'll get 100$ for a start :)
 * testing in progress
 * frontend React
 * DEPLOY!!
