@@ -39,15 +39,8 @@ public class BetCartService {
 
     private void addNewBetCartToCustomerCarts() {
         Customer currentCustomer = customerService.getCurrentLoggedInCustomer();
-        BetCart newBetCart = createNewBetCart(currentCustomer);
+        BetCart newBetCart = customerService.createNewBetCart(currentCustomer);
         newBetCart.setCustomer(currentCustomer);
         currentCustomer.getBetCarts().add(newBetCart);
-    }
-
-    private BetCart createNewBetCart(final Customer customer) {
-        return BetCart.builder()
-                .customer(customer)
-                .finished(false)
-                .build();
     }
 }

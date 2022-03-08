@@ -9,7 +9,6 @@ import my.betservice.dto.league.LeagueInfoPackageDtoIn;
 import my.betservice.dto.odd.OddInfoDtoIn;
 import my.betservice.dto.odd.OddInfoPackageDtoIn;
 import my.betservice.exception.ClientFetchException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
@@ -25,18 +24,7 @@ import java.util.*;
 public class FootballClient {
     private static final String HOST_NAME = "x-rapidapi-host";
     private static final String KEY_NAME = "x-rapidapi-key";
-    private static final Integer WIN_MATCH_BET = 1;
-    private static final Integer BOOKMAKER_BET_365 = 7;
-    @Value("${football.api.key}")
-    private String apiKeyValue;
-    @Value("${football.api.endpoint}")
-    private String apiEndpointValue;
-    @Value("${football.api.host}")
-    private String apiHostValue;
-    @Value("${premier_league_id}")
-    private Long premierLeagueId;
-    @Value("${actual_season}")
-    private Integer actualSeason;
+    private final FootballClientInfo info;
     private final RestTemplate restTemplate;
 
 
@@ -46,7 +34,7 @@ public class FootballClient {
 
         try {
             ResponseEntity<LeagueInfoPackageDtoIn> response = restTemplate.exchange(
-                    apiEndpointValue + "leagues?id=" + leagueId,
+                    info.getApiEndpointValue() + "leagues?id=" + leagueId,
                     HttpMethod.GET,
                     request,
                     LeagueInfoPackageDtoIn.class);
@@ -62,7 +50,7 @@ public class FootballClient {
                                                  final Integer season) {
         HttpEntity request = setHeaders();
 
-        URI uri = UriComponentsBuilder.fromHttpUrl(apiEndpointValue + "fixtures")
+        URI uri = UriComponentsBuilder.fromHttpUrl(info.getApiEndpointValue() + "fixtures")
                 .queryParam("league", leagueId)
                 .queryParam("season", season)
                 .build().encode().toUri();
@@ -83,9 +71,9 @@ public class FootballClient {
     public List<FixtureInfoDtoIn> updatePremierLeagueFixturesStatus() {
         HttpEntity request = setHeaders();
 
-        URI uri = UriComponentsBuilder.fromHttpUrl(apiEndpointValue + "fixtures")
-                .queryParam("league", premierLeagueId)
-                .queryParam("season", actualSeason)
+        URI uri = UriComponentsBuilder.fromHttpUrl(info.getApiEndpointValue() + "fixtures")
+                .queryParam("league", info.getPremierLeagueId())
+                .queryParam("season", info.getActualSeason())
                 .queryParam("date", LocalDate.now())
                 .build().encode().toUri();
 
@@ -105,10 +93,10 @@ public class FootballClient {
     public OddInfoDtoIn getOddInfoByFixture(final Integer fixtureId) throws ClientFetchException {
         HttpEntity request = setHeaders();
 
-        URI uri = UriComponentsBuilder.fromHttpUrl(apiEndpointValue + "odds")
-                .queryParam("bookmaker", BOOKMAKER_BET_365)
+        URI uri = UriComponentsBuilder.fromHttpUrl(info.getApiEndpointValue() + "odds")
+                .queryParam("bookmaker", info.getBookmakerBet365())
                 .queryParam("fixture", fixtureId)
-                .queryParam("bet", WIN_MATCH_BET)
+                .queryParam("bet", info.getBetWinMatch())
                 .build().encode().toUri();
 
         try {
@@ -128,8 +116,8 @@ public class FootballClient {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-        headers.set(HOST_NAME,apiHostValue);
-        headers.set(KEY_NAME,apiKeyValue);
+        headers.set(HOST_NAME,info.getApiHostValue());
+        headers.set(KEY_NAME,info.getApiKeyValue());
 
         return new HttpEntity(headers);
     }
