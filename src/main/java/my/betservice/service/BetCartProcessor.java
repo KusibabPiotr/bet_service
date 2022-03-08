@@ -42,7 +42,7 @@ public class BetCartProcessor {
     private double countOddsValue(final BetCartDto dto) {
         return dto.getBetList()
                         .stream()
-                        .mapToDouble(e -> Double.parseDouble(e.getBetValue().getValue()))
+                        .mapToDouble(e -> Double.parseDouble(e.getBetValue().getOdd()))
                         .sum();
     }
 }

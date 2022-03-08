@@ -41,10 +41,4 @@ public class BetCardMapper {
                 .map(BetCardMapper::mapToBetCardDto)
                 .collect(Collectors.toList());
     }
-
-    public static List<BetCart> mapToBetCardList(final List<BetCartDto> dtos) {
-        return dtos.stream()
-                .map(BetCardMapper::mapToBetCard)
-                .collect(Collectors.toList());
-    }
 }
