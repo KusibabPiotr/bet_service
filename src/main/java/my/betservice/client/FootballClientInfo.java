@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 @Getter
 public class FootballClientInfo {
     @Value("${bet_win_match}")
-    private Integer betWinMatch = 1;
+    private final Integer betWinMatch = 1;
     @Value("${bet365_bookmaker_id}")
-    private Integer bookmakerBet365 = 7;
+    private final Integer bookmakerBet365 = 7;
     @Value("${football.api.key}")
     private String apiKeyValue;
     @Value("${football.api.endpoint}")

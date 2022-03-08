@@ -2,6 +2,7 @@ package my.betservice.controller.user;
 
 import lombok.RequiredArgsConstructor;
 import my.betservice.dto.user.CustomerDto;
+import my.betservice.dto.user.PersonalDetailsDto;
 import my.betservice.facade.CustomerFacade;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -14,13 +15,13 @@ public class CustomerController {
 
     @PreAuthorize("hasAnyAuthority('USER','ADMIN')")
     @PostMapping
-    public CustomerDto createCustomer(@RequestBody CustomerDto customerDto) {
+    public CustomerDto createCustomerDetails(@RequestBody CustomerDto customerDto) {
         return customerFacade.createCustomer(customerDto);
     }
 
     @PreAuthorize("hasAnyAuthority('USER','ADMIN')")
-    @PutMapping(value = "/{id}")
-    public CustomerDto updateCustomer(@RequestBody CustomerDto customerDto, @RequestParam Long id) {
-        return customerFacade.updateCustomerPersonalDetails(customerDto, id);
+    @PutMapping
+    public CustomerDto updateCustomerDetails(@RequestBody PersonalDetailsDto details) {
+        return customerFacade.updateCustomerPersonalDetails(details);
     }
 }

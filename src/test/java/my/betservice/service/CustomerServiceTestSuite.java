@@ -2,7 +2,6 @@ package my.betservice.service;
 
 import my.betservice.domain.bet.BetCart;
 import my.betservice.domain.user.Customer;
-import my.betservice.domain.user.PersonalDetails;
 import my.betservice.exception.CustomerNotFoundException;
 import my.betservice.registration.AppUserRole;
 import my.betservice.registration.domain.AppUser;
@@ -83,66 +82,43 @@ class CustomerServiceTestSuite {
 
     @Nested
     class TestUpdateCustomerPersonalDetails {
-        @Test
-        void shouldThrowCustomerNotFoundException() {
-            Customer customer = Customer.builder()
-                    .personalDetails(new PersonalDetails())
-                    .build();
-            //given
-            given(customerRepository.findById(any()))
-                    .willThrow(new CustomerNotFoundException());
-            //when $ then
-            assertThatThrownBy(() -> customerService.updateCustomerPersonalDetails(customer,1L))
-                    .isInstanceOf(CustomerNotFoundException.class);
-        }
-        @Test
-        void shouldThrowIllegalArgumentException() {
-            Customer customer = Customer.builder()
-                    .personalDetails(new PersonalDetails())
-                    .build();
-            //given
-            given(customerRepository.findById(null))
-                    .willThrow(new IllegalArgumentException());
-            //when $ then
-            assertThatThrownBy(() -> customerService.updateCustomerPersonalDetails(customer,null))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
-        @Test
-        void shouldThrowNullPointerException() {
-            Customer customer = Customer.builder()
-                    .personalDetails(new PersonalDetails())
-                    .build();
-            //given
-            given(customerRepository.findById(1L))
-                    .willReturn(ofNullable(customer));
-            //when $ then
-            assertThatThrownBy(() -> customerService.updateCustomerPersonalDetails(null,1L))
-                    .isInstanceOf(NullPointerException.class);
-        }
-        @Test
-        void shouldUpdateCustomerFromDbWithGivenDetails() {
-            PersonalDetails build = PersonalDetails.builder()
-                    .firstName("Marcin")
-                    .lastName("Kruk")
-                    .build();
-            Customer customer = Customer.builder()
-                    .personalDetails(build)
-                    .build();
-            Customer customerFromDb = Customer.builder()
-                    .id(1L)
-                    .personalDetails(new PersonalDetails())
-                    .build();
-            //given
-            given(customerRepository.findById(1L))
-                    .willReturn(ofNullable(customerFromDb));
-            //when
-            Customer updatedAndSaved = customerService.updateCustomerPersonalDetails(customer, 1L);
-            //then
-            assertThat(updatedAndSaved.getPersonalDetails().getFirstName())
-                    .isEqualTo("Marcin");
-            assertThat(updatedAndSaved.getPersonalDetails().getLastName())
-                    .isEqualTo("Kruk");
-        }
+
+//        @Test
+//        void shouldThrowNullPointerException() {
+//            Customer customer = Customer.builder()
+//                    .personalDetails(new PersonalDetails())
+//                    .build();
+//            //given
+//            given(customerRepository.findById(1L))
+//                    .willReturn(ofNullable(customer));
+//            //when $ then
+//            assertThatThrownBy(() -> customerService.updateCustomerPersonalDetails(null,1L))
+//                    .isInstanceOf(NullPointerException.class);
+//        }
+//        @Test
+//        void shouldUpdateCustomerFromDbWithGivenDetails() {
+//            PersonalDetails build = PersonalDetails.builder()
+//                    .firstName("Marcin")
+//                    .lastName("Kruk")
+//                    .build();
+//            Customer customer = Customer.builder()
+//                    .personalDetails(build)
+//                    .build();
+//            Customer customerFromDb = Customer.builder()
+//                    .id(1L)
+//                    .personalDetails(new PersonalDetails())
+//                    .build();
+//            //given
+//            given(customerRepository.findById(1L))
+//                    .willReturn(ofNullable(customerFromDb));
+//            //when
+//            Customer updatedAndSaved = customerService.updateCustomerPersonalDetails(customer, 1L);
+//            //then
+//            assertThat(updatedAndSaved.getPersonalDetails().getFirstName())
+//                    .isEqualTo("Marcin");
+//            assertThat(updatedAndSaved.getPersonalDetails().getLastName())
+//                    .isEqualTo("Kruk");
+//        }
     }
     @Nested
     class TestGetCurrentLoggedInCustomer {

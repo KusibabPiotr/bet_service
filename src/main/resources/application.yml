@@ -48,3 +48,5 @@ premier_league_id: 39
 actual_season: 2021
 bet365_bookmaker_id: 7
 bet_win_match: 1
+#start_money
+start_money_amount: 100
