@@ -18,9 +18,11 @@ Project is created with:
 * MySQL
 * H2 Database
 * Hibernate
-* React(future frontend)
+* React(future frontend) >> little teaser << dockerized login/registration home page for app: https://hub.docker.com/repository/docker/piotrka94/betservice-front-login
 
 ## Features
+* only admin can fetch new leagues to application 
+* only admin is allowed to get fixtures for league for a given season of a given year
 * if you are not app user you can only view available leagues and football matches for actueal season
 * registration with email confirmation to enable user
 * create you profile >> personal details
