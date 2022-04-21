@@ -9,7 +9,7 @@
 
 ## General info
 It is best to learn programming through practice. My motivation to build this application is the desire to consolidate technology and acquire new skills. Basicly this 
-is REST API for now. Later on I'll build frontend using React. Is powered by external API. The application allows you to register, log in, check the results of matches in a given season for available leagues. You can also add bets to the cart and settle the winnings(not real). Secured by Spring Security. Authorization using JWT.
+is REST API for now. Later on I'll build frontend using React. It is powered by external API. The application allows you to register, log in, check the results of matches in a given season for available leagues. You can also add bets to the cart and settle the winnings(not real). Secured by Spring Security. Authorization using JWT.
 	
 ## Technologies
 Project is created with:
