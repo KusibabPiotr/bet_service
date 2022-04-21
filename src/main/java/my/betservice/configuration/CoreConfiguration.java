@@ -1,6 +1,5 @@
 package my.betservice.configuration;
 
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import my.betservice.jwt.settings.JwtConstant;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

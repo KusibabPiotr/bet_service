@@ -1,12 +1,22 @@
 package my.betservice.controller;
 
 import my.betservice.exception.*;
+import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
@@ -46,11 +56,6 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>("You have confirmed your email already!", HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(EmailNotValidException.class)
-    public ResponseEntity<String> handleEmailNotValidException() {
-        return new ResponseEntity<>("You have to provide right email format!", HttpStatus.BAD_REQUEST);
-    }
-
     @ExceptionHandler(FixtureNotFoundException.class)
     public ResponseEntity<String> handleFixtureNotFoundException() {
         return new ResponseEntity<>("There is no fixture with given id", HttpStatus.BAD_REQUEST);
@@ -81,13 +86,22 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>("Authentication Failed", HttpStatus.UNAUTHORIZED);
     }
 
-    @ExceptionHandler(IllegalPasswordFormatException.class)
-    public ResponseEntity<String> handleIllegalPasswordFormatException() {
-        return new ResponseEntity<>("Your password should contains at least 6 signs!", HttpStatus.BAD_REQUEST);
-    }
-
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<String> handleUsernameNotFoundException() {
         return new ResponseEntity<>("There is no user with given username!", HttpStatus.BAD_REQUEST);
+    }
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+                                                                  HttpHeaders headers,
+                                                                  HttpStatus status, WebRequest request) {
+
+        String message = ex.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(DefaultMessageSourceResolvable::getDefaultMessage)
+                .collect(Collectors.toList())
+                .get(0);
+
+        return new ResponseEntity<>(message, status);
     }
 }

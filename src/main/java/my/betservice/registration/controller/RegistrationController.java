@@ -6,6 +6,8 @@ import my.betservice.registration.dto.RegistrationRequestDto;
 import my.betservice.registration.service.RegistrationService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/registration")
 @RequiredArgsConstructor
@@ -13,7 +15,7 @@ public class RegistrationController {
     private final RegistrationService registrationService;
 
     @PostMapping
-    public String register(@RequestBody RegistrationRequestDto request)
+    public String register(@RequestBody @Valid RegistrationRequestDto request)
             throws EmailNotValidException, PasswordNotMatchException,
             EmailAlreadyExistsInDatabaseException {
         return registrationService.register(request);
